@@ -68,6 +68,10 @@ def read_odt_seismic(filename, start_time=None, sample_interval=None):
 
     Returns a tuple of timebase, arrays representing inline and xline numbers,
     and an array of data.
+
+    TODO:
+        Is it better to return an array of inline, xline coordinates?
+        Is that np.meshgrid...?
     """
     # Sniff file compression.
     file_extension = os.path.splitext(filename)[1]
