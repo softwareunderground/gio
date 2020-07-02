@@ -13,7 +13,18 @@ import os
 import gzip
 
 import numpy as np
-import h5py
+import pandas as pd
+
+
+def read_opendtect_points(filename):
+    """
+    Read an OpendTect points file. Returns array with columns UTMx, UTMy, TWT.
+
+    TODO:
+        Do something with metadata in file.
+    """
+    data = np.loadtxt(filename, skiprows=6, comments='!', usecols=[0,1,2])
+    return data
 
 
 def read_petrel_points(filename):
@@ -51,14 +62,6 @@ def read_petrel_points(filename):
         s = StringIO(d)
 
         return np.loadtxt(s)
-
-
-def read_petrel_horizon(filename):
-    """
-    Read a Petrel 2D IESX horizon file. Return an array.
-
-    """
-    pass
 
 
 def read_odt_seismic(filename, start_time=None, sample_interval=None):
@@ -114,13 +117,66 @@ def read_odt_seismic(filename, start_time=None, sample_interval=None):
 
     return time_basis, np.array(inlines), np.array(xlines), data
 
-
-def seismic_array_to_hdf5(a):
+def read_spwla(fname, null=-999.25):
     """
-    Write seismic as HDF5 file.
+    Read SPWLA SPT core analysis / mudlog format.
+    This has only been tested on one file! Use at your own risk.
+    Reads fields 30, 36 and 40, using column names from field 15.
 
-    This is clearly not needed, just parking it here.
+    Args
+        fname (str): An SPWLA / SPT file.
+        null (float): The number representing nulls; will be cast to NaNs.
+
+    Returns
+        pandas.DataFrame
     """
-    h5f = h5py.File('data/seismic.h5', 'w')
-    h5f.create_dataset('data', data=a, compression='lzf')
-    h5f.close()
+    import re
+
+    # Not using this one.
+    # rx_fields = re.compile(r'''
+    #     ^
+    #     15\s+?\d+?\s+?\d+?\n
+    #     (?P<fields>[\s\S]+?)
+    #     (?=^[^1]|\Z)
+    # ''', re.MULTILINE | re.VERBOSE)
+
+    rx_fields = re.compile(r'''
+        ^
+        \s+?\d+?\s+?\d+?\s+?\d+?\s+?0\S+?\s+?(?P<field>[\w\d][- ,.\w\d]+?)\n
+    ''', re.MULTILINE | re.VERBOSE)
+
+    rx_depth = re.compile(r'''
+        ^
+        30\s+?1\n
+        \s+?(?P<depth>[.\d]+?)[ \t]+?[.\d]+?[ \t]+?(?P<seq>[.\d]+?)\n
+        (?P<record>[\s\S]+?)
+        (?=^30|\Z)
+    ''', re.MULTILINE | re.VERBOSE)
+
+    rx_data = re.compile(r'''
+        ^
+        (?:36\s+?1\s+?1\n
+        \s+?(?P<descr>.+?)\n)?
+        40\s+?1\s+?\d+?\n
+        \s+?(?P<data>[- .\d]+?)\n
+    ''', re.MULTILINE | re.VERBOSE)
+    
+    records = (field.group('field') for field in rx_fields.finditer(s))
+
+    result = (
+              (
+                float(record.group('depth')),
+                record.group('seq'),
+                data.group('descr'),
+                *[float(x) for x in data.group('data').split()]
+              )
+               for record in rx_depth.finditer(s)
+               for data in rx_data.finditer(record.group('record'))
+    )
+
+    columns = ['depth', 'seq', 'descr'] + list(records)
+    
+    df = pd.DataFrame(result, columns=columns)
+    df = df.replace(null, np.nan)
+
+    return df
