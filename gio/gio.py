@@ -5,12 +5,13 @@ Geoscience I/O functions.
 
 Single file module for now.
 
-:copyright: 2015 Agile Geoscience
+:copyright: 2020 Agile Geoscience
 :license: Apache 2.0
 """
 from io import StringIO
 import os
 import gzip
+import re
 
 import numpy as np
 import pandas as pd
@@ -130,8 +131,6 @@ def read_spwla(fname, null=-999.25):
     Returns
         pandas.DataFrame
     """
-    import re
-
     # Not using this one.
     # rx_fields = re.compile(r'''
     #     ^
