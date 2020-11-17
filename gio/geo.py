@@ -1,13 +1,10 @@
 import pprint
-import traceback
 from pathlib import Path
 
-import lasio
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-
+# Also requires lasio to be installed for the conversion to LAS functionality.
 
 def read_geo_file(filename):
     """Read and parse a .geo file from disk
@@ -329,8 +326,12 @@ class GeoFile(object):
                 and I don't recommend it (for now).
                 
         Returns: list of :class:`lasio.LASFile` objects.
+
+        Requires lasio to be installed.
         
         """
+        import lasio
+
         assert from_frames in ("original", "reindexed")
         if from_frames == "original":
             names = [f["title"] for f in self.frames]
@@ -463,7 +464,11 @@ def geo_to_lasfiles(
             metres, back into metres.
         overwrite (bool): overwrite any already-existing LAS files.
         
+    Requires lasio to be installed.
+
     """
+    import lasio
+
     fn = Path(fn)
     output_folder = Path(output_folder)
     if reindex_frames:
