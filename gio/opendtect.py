@@ -56,10 +56,10 @@ def regularize_columns(df, mapping=None, snake_case=True):
     Adjust the column names to use segyio / SEGY-SAK standard names.
     And optionally transform to snake case.
     """
-    mapping = mapping or {'Inline': 'iline',
-                          'Crossline': 'xline',
-                          'X': 'cdp_x',
-                          'Y': 'cdp_y',
+    mapping = mapping or {'Inline': 'iline', 'inline': 'iline',
+                          'Crossline': 'xline', 'crossline': 'xline',
+                          'X': 'cdp_x', 'x': 'cdp_x',
+                          'Y': 'cdp_y', 'y': 'cdp_y',
                           'Z': 'twt'}
     df = df.rename(columns=mapping)
     if snake_case:
@@ -108,10 +108,13 @@ def df_to_xarray(df, attrs=None):
         message = "Require columns or indexes 'iline' and 'xline'."
         raise TypeError(message)
 
-    if len(df.columns) == 1:
-        dx = xr.DataArray.from_series(df.iloc[:, 0])  # One column.
-    else:
-        dx = xr.Dataset.from_dataframe(df)
+    # Question: should return a DataArray if only 1 attribute?
+    # But then have to deal with possibly having cdp_x and cdp_y.
+    dx = xr.Dataset.from_dataframe(df)
+
+    if ('cdp_x' in df.columns) and ('cdp_y' in df.columns):
+        dx = dx.assign_coords(cdp_x=(('iline', 'xline'), dx['cdp_x'].data))
+        dx = dx.assign_coords(cdp_y=(('iline', 'xline'), dx['cdp_y'].data))
 
     dx.attrs.update(attrs or {})
 
