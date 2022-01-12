@@ -25,6 +25,9 @@ def test_read_odt_xy():
     """
     fname = 'data/OdT/3d_horizon/Segment_XY_No-header.dat'
 
-    ds = gio.read_odt(fname, names=['X', 'Y', 'TWT'])
+    with pytest.warns(UserWarning):
+        # Warns the users it's computing a grid.
+        ds = gio.read_odt(fname, names=['X', 'Y', 'TWT'])
+
     assert ds['twt'].shape == (54, 57)
     assert ds['twt'].mean() - 661.88136 < 1e-5
