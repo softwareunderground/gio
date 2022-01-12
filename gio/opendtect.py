@@ -5,6 +5,7 @@ I/O for OpendTect horizon formats.
 :copyright: 2022 Agile Geoscience
 :license: Apache 2.0
 """
+import warnings
 import re
 import pandas as pd
 import xarray as xr
@@ -54,13 +55,25 @@ def get_names_from_header(header):
     return pattern.findall(header)
 
 
-def read_odt_as_df(fname, names=None, usecols=None, na_values=None):
+def read_odt_as_df(fname, names=None, usecols=None, na_values=None, **kwargs):
     """
     Read an OdT file as a Pandas DataFrame.
+
+    Args:
+        fname (str): Path to file.
+        names (list): List of column names.
+        usecols (list): List of column indices to use.
+        na_values (list): List of values to treat as NA.
+        kwargs are passed to pandas.read_csv.
+    
+    Returns:
+        df (pandas.DataFrame): DataFrame containing the data.
     """
     header, types = get_meta(fname)
 
-
+    if header and (len(types) > len(get_names_from_header(header))):
+        # Then this is a multi-horizon file.
+        header = '# "Horizon"\n' + header
     
     if (names is None) and header:
         names = get_names_from_header(header)
@@ -94,6 +107,7 @@ def read_odt_as_df(fname, names=None, usecols=None, na_values=None):
                      usecols=usecols,
                      na_values=na_values,
                      keep_default_na=False,
+                     **kwargs
                     )
     
     return df
@@ -126,6 +140,7 @@ def df_to_xarray(df, attrs=None, origin=(0, 0), step=(1, 1)):
         df = df.set_index(["iline", "xline"])
     elif ('cdp_x' in df.columns) and ('cdp_y' in df.columns):
         message = "Attempting to construct grid from (x, y) locations."
+        warnings.warn(message, stacklevel=2)
         ones = np.ones_like(df['cdp_x'])
         _, _, (addy, addx) = xy_to_grid(df['cdp_x'], df['cdp_y'], ones)
         addy = np.max(addy) - addy  # Adjust for origin.
@@ -205,5 +220,23 @@ def read_odt(fname,
                         usecols=usecols,
                         na_values=na_values
                         )
+
+    attrs = attrs or {}
     attrs.update({'odt_filename': fname})
-    return df_to_xarray(df, attrs=attrs, origin=origin, step=step)
+
+    if 'Horizon' in df.columns:
+        dx = xr.Dataset()
+        for name, group in df.groupby('Horizon'):
+            group = group.drop(columns=['Horizon'])
+            ds = df_to_xarray(group, attrs=attrs, origin=origin, step=step)
+
+            # Get the one DataArray out (surely there's a better way to do this?).
+            da = ds[list(ds.data_vars.keys())[0]]
+
+            # Add it to the Dataset.
+            dx[name] = da
+
+    else:
+        dx = df_to_xarray(df, attrs=attrs, origin=origin, step=step)
+
+    return dx

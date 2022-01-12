@@ -134,7 +134,7 @@ def get_intervals(x):
     return Nx, dx
 
 
-def xy_to_grid(x, y, data):
+def xy_to_grid(x, y, data, compute_array=False):
     """
     Bin a bunch of unsorted (x, y) datapoints into a regular grid.
 
@@ -163,8 +163,11 @@ def xy_to_grid(x, y, data):
 
     # Don't strictly need to do this if we don't want the array.
     # (Don't need it for the OdT loading workflow.)
-    arr, *_ = np.histogram2d(y_new, x_new, bins=[yedge, xedge], weights=data)
-    arr[arr == 0] = np.nan
+    if compute_array:
+        arr, *_ = np.histogram2d(y_new, x_new, bins=[yedge, xedge], weights=data)
+        arr[arr == 0] = np.nan
+    else:
+        arr = None
     
     # Find destination 'address' of each sample.
     addx = np.digitize(x_new, xedge) - 1  # No 'outer' bin.
