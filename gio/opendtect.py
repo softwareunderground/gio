@@ -59,6 +59,8 @@ def read_odt_as_df(fname, names=None, usecols=None, na_values=None):
     Read an OdT file as a Pandas DataFrame.
     """
     header, types = get_meta(fname)
+
+
     
     if (names is None) and header:
         names = get_names_from_header(header)
@@ -191,6 +193,8 @@ def read_odt(fname,
             an origin, it will start numbering there; if you provide a step,
             it will use that to increment the indices.
         step (tuple of ints): The step size of the grid (see `origin`, above).
+        attrs (dict): The attributes to add to the Dataset; the filename
+            will be added as 'odt_filename'.
 
     Returns
         xarray.Dataset: Each data column will be a data variable. Inline and
@@ -201,4 +205,5 @@ def read_odt(fname,
                         usecols=usecols,
                         na_values=na_values
                         )
-    return df_to_xarray(df, origin=origin, step=step)
+    attrs.update({'odt_filename': fname})
+    return df_to_xarray(df, attrs=attrs, origin=origin, step=step)
