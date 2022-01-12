@@ -57,7 +57,8 @@ def rectify(X, vector):
 
 
 def parabolic(f, x):
-    """Quadratic interpolation for estimating the true position of an
+    """
+    Quadratic interpolation for estimating the true position of an
     inter-sample maximum when nearby samples are known.
    
     f is a vector and x is an index for that vector.
@@ -74,8 +75,8 @@ def parabolic(f, x):
     >>> parabolic(f, np.argmax(f))
     (3.2142857142857144, 6.1607142857142856)
     """
-    xv = 1/2. * (f[x-1] - f[x+1]) / (f[x-1] - 2 * f[x] + f[x+1]) + x
-    yv = f[x] - 1/4. * (f[x-1] - f[x+1]) * (xv - x)
+    xv = 1/2 * (f[x-1] - f[x+1]) / (f[x-1] - 2 * f[x] + f[x+1]) + x
+    yv = f[x] - 1/4 * (f[x-1] - f[x+1]) * (xv - x)
     return (xv, yv)
 
 
@@ -136,6 +137,12 @@ def get_intervals(x):
 def xy_to_grid(x, y, data):
     """
     Bin a bunch of unsorted (x, y) datapoints into a regular grid.
+
+    Returns
+        arr (ndarray): The binned data.
+        (dx, dy): The spacing between bins in the x and y directions.
+        (addx, addy): The destination of each data point into the grid;
+            n.b. this is given in NumPy (row, col) format.
     """
     # Create shapely points.
     X = np.vstack([x, y, data]).T
@@ -149,11 +156,13 @@ def xy_to_grid(x, y, data):
     Nx, dx = get_intervals(x_new)
     Ny, dy = get_intervals(y_new)
     
-    xedge = np.linspace(np.min(x_new) - dx / 2, np.max(x_new) + dx / 2, Nx+1)
-    yedge = np.linspace(np.min(y_new) - dy / 2, np.max(y_new) + dy / 2, Ny+1)
+    xedge = np.linspace(np.min(x_new) - dx / 2, np.max(x_new) + dx / 2, Nx + 1)
+    yedge = np.linspace(np.min(y_new) - dy / 2, np.max(y_new) + dy / 2, Ny + 1)
     
     assert np.all(data > 0), "Data are not strictly positive; see docs."
 
+    # Don't strictly need to do this if we don't want the array.
+    # (Don't need it for the OdT loading workflow.)
     arr, *_ = np.histogram2d(y_new, x_new, bins=[yedge, xedge], weights=data)
     arr[arr == 0] = np.nan
     
@@ -161,4 +170,7 @@ def xy_to_grid(x, y, data):
     addx = np.digitize(x_new, xedge) - 1  # No 'outer' bin.
     addy = np.digitize(y_new, yedge) - 1
 
-    return arr, (dx, dy), (addx, addy)
+    # Adjust addy to account for numbering of rows in array.
+    addy = Ny - addy
+
+    return arr, (dx, dy), (addy, addx)
