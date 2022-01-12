@@ -29,6 +29,9 @@ setup(
     license_files = ('LICENSE',),
     classifiers=CLASSIFIERS,
     install_requires=['xarray', 'shapely'],
+    extras_require = {
+        'geopandas':  ["geopandas"],
+    },
     tests_require=['pytest', 'pytest-cov'],
     test_suite='python run_tests.py'
 )
