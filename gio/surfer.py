@@ -207,10 +207,7 @@ def _surfer6ascii(fname):
         [xmin, xmax] = [float(n) for n in f.readline().split()]
         [ymin, ymax] = [float(n) for n in f.readline().split()]
         [zmin, zmax] = [float(n) for n in f.readline().split()]
-        data = np.zeros((nrow, ncol))
-        for i in range(nrow):
-            data[i, :] = [float(n) for n in f.readline().split()]
-        data = data.T
+        data = np.fromiter(f.read().split(), dtype=float)
 
     grd_info = GridInfo(
         ncol=ncol,
@@ -221,7 +218,7 @@ def _surfer6ascii(fname):
         ysize=(ymax-ymin)/(nrow-1),
         zmin=zmin,
         zmax=zmax,
-        data=data,
+        data=data.reshape(nrow, ncol),
         fname=fname,
     )
 
