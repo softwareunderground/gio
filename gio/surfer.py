@@ -48,7 +48,15 @@ class GridInfo:
         """
         Convert to xarray.DataArray. Only (x, y)-orthogonal grids are supported.
         """
-        return xr.DataArray(self.data,
+        try:
+            return xr.DataArray(self.data,
+                            dims=('y', 'x'),
+                            coords={'x': np.arange(self.ncol) * self.xsize + self.xll,
+                                    'y': np.arange(self.nrow) * self.ysize + self.yll},
+                            attrs={'source': self.fname,})
+        except ValueError:
+            # This should be more predictable.
+            return xr.DataArray(self.data.T,
                             dims=('y', 'x'),
                             coords={'x': np.arange(self.ncol) * self.xsize + self.xll,
                                     'y': np.arange(self.nrow) * self.ysize + self.yll},
@@ -75,8 +83,10 @@ def read_grd(fname):
         file_ident = unpack('4s', f.read(4))[0]
     
     if file_ident == b'DSRB':
+        print("Surfer 7 binary .grd file detected. ")
         grd_info = _surfer7bin(fname)
     elif file_ident == b'DSBB':
+        print("Surfer 6 binary .grd file detected. ")
         grd_info = _surfer6bin(fname)
     elif file_ident == b'DSAA':
         grd_info = _surfer6ascii(fname)
@@ -156,7 +166,7 @@ def _surfer7bin(fname):
         ysize=deltay,
         zmin=zmin,
         zmax=zmax,
-        data=data.reshape(ncol, nrow, order='F'),
+        data=data.reshape(ncol, nrow, order='F').T,
         fname=fname,
     )
 
@@ -192,7 +202,7 @@ def _surfer6bin(fname):
         ysize=(yhi-ylo)/(ny-1),
         zmin=zlo,
         zmax=zhi,
-        data=data.reshape(nx, ny, order='F'),
+        data=data.reshape(nx, ny, order='F').T,
         fname=fname,
     )
 
