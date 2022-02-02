@@ -1,4 +1,6 @@
+# Version file autocreated in pyproject.toml and snowfake/__init__.py
 _version.py
+
 .ipynb_checkpoints
 
 # Byte-compiled / optimized / DLL files
