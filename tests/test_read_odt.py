@@ -22,14 +22,12 @@ def test_read_odt():
 def test_read_odt_xy():
     """
     Test the automagical XY reader.
-
-    Really makes no difference if we have a header or not.
     """
-    df = pd.read_csv('data/OdT/3d_horizon/Segment_XY_No-header.dat',
-                 names=['x', 'y', 'twt', 'var_0', 'var_1', 'var_2', 'var_3'],
-                 sep='\s+')
+    fname = 'data/OdT/3d_horizon/Segment_XY_No-header.dat'
 
-    arr, (dx, dy) = gio.xy_to_grid(df.x, df.y, df.twt)
+    with pytest.warns(UserWarning):
+        # Warns the users it's computing a grid.
+        ds = gio.read_odt(fname, names=['X', 'Y', 'TWT'])
 
-    assert arr.shape == (57, 54)
-    assert (dx, dy) == (50, 50)
+    assert ds['twt'].shape == (54, 57)
+    assert ds['twt'].mean() - 661.88136 < 1e-5
