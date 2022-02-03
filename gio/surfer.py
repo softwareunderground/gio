@@ -147,8 +147,8 @@ def _surfer7bin(fname):
 
     return GridInfo(xmin=xLL,
                     ymin=yLL,
-                    xsize=xSize,
-                    ysize=ySize,
+                    xmax=xLL + xSize*nCol,
+                    ymax=yLL + ySize*nRow,
                     data=np.flipud(data.reshape(nRow, nCol)),
                     fname=fname,
                     )
