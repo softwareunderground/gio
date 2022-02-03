@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 I/O for OpendTect horizon formats.
 
@@ -65,7 +64,7 @@ def read_odt_as_df(fname, names=None, usecols=None, na_values=None, **kwargs):
         usecols (list): List of column indices to use.
         na_values (list): List of values to treat as NA.
         kwargs are passed to pandas.read_csv.
-    
+
     Returns:
         df (pandas.DataFrame): DataFrame containing the data.
     """
@@ -74,7 +73,7 @@ def read_odt_as_df(fname, names=None, usecols=None, na_values=None, **kwargs):
     if header and (len(types) > len(get_names_from_header(header))):
         # Then this is a multi-horizon file.
         header = '# "Horizon"\n' + header
-    
+
     if (names is None) and header:
         names = get_names_from_header(header)
     elif (names is not None) and header:
@@ -99,7 +98,7 @@ def read_odt_as_df(fname, names=None, usecols=None, na_values=None, **kwargs):
         na_values = ['1e30']
     else:
         na_values = [str(n) for n in na_values]
-    
+
     df = pd.read_csv(fname,
                      names=names,
                      sep="\t",
@@ -109,7 +108,7 @@ def read_odt_as_df(fname, names=None, usecols=None, na_values=None, **kwargs):
                      keep_default_na=False,
                      **kwargs
                     )
-    
+
     return df
 
 

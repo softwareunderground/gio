@@ -1,7 +1,13 @@
 """
 Read 2D ASCII/binary Surfer grid files.
 
+:copyright: 2022 Agile Geoscience (this adaptation)
+:license: Apache 2.0
+
 Adapted from Seequent's `steno3d_surfer`: https://pypi.org/project/steno3d_surfer
+
+:copyright: 2018 Seequent
+:license: MIT
 
 MIT License
 Copyright (c) 2018 Seequent
@@ -81,7 +87,7 @@ def read_surfer(fname):
 def read_grd(fname):
     with open(fname, 'rb') as f:
         file_ident = unpack('4s', f.read(4))[0]
-    
+
     if file_ident == b'DSRB':
         print("Surfer 7 binary .grd file detected. ")
         grd_info = _surfer7bin(fname)
