@@ -1,5 +1,4 @@
 """Test gio"""
-import pandas as pd
 import pytest
 import gio
 

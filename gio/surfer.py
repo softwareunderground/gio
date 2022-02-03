@@ -195,8 +195,6 @@ def _surfer6ascii(fname):
         [_, _]       = [float(n) for n in f.readline().split()]  # zmin zmax
         data = np.fromiter(f.read().split(), dtype=float)
 
-    # NB First row is the minimum Y coordinate, i.e. first sample is SW corner.
-
     return GridInfo(xmin=xlo,
                     ymin=ylo,
                     xmax=xhi,
