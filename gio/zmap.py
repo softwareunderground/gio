@@ -12,6 +12,6 @@ def read_zmap(fname):
     """
     Read a ZMAP file and return an xarray.DataArray
     """
-    z = ZMAPGrid(fname)
+    z = zmapio.ZMAPGrid(fname)
     da = xr.DataArray.from_dataframe(z.to_pandas())
     return da
