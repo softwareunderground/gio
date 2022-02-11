@@ -39,7 +39,7 @@ def plot(ax=None, fname=None):
     ax.set_zlim(0, 1200)
 
     if fname is not None:
-        plt.savefig(fname, dpi=200)
+        plt.savefig(fname, dpi=200, bbox_inches='tight')
 
     plt.show()
 
