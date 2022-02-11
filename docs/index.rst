@@ -1,13 +1,13 @@
 :hide-toc:
 
-.. container::
+.. container:: noclass
    :name: forkongithub
 
    `Fork on GitHub <https://github.com/agile-geoscience/gio>`_
 
 
-gio: I/O for Subsurface Surfaces
-================================
+gio: Geo I/O for Subsurface Surfaces
+====================================
 
     | ``gio`` reads and write subsurface data files
     | describing surfaces, grids and horizons.

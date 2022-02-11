@@ -1,8 +1,8 @@
 # gio
 
 [![Tests](https://github.com/agile-geoscience/gio/actions/workflows/build-test.yml/badge.svg)](https://github.com/agile-geoscience/gio/actions/workflows/build-test.yml)
-[![PyPI status](https://img.shields.io/pypi/status/gio.svg)](https://pypi.org/project/gio//)
-[![PyPI versions](https://img.shields.io/pypi/pyversions/gio.svg)](https://pypi.org/project/gio//)
+[![PyPI version](https://img.shields.io/pypi/v/gio.svg)](https://pypi.org/project/gio/)
+[![PyPI versions](https://img.shields.io/pypi/pyversions/gio.svg)](https://pypi.org/project/gio/)
 [![PyPI license](https://img.shields.io/pypi/l/gio.svg)](https://pypi.org/project/gio/)
 
 **Geoscience I/O for grids and horizons.**

@@ -175,10 +175,11 @@ def read_odt(fname,
     """
     Read an OdT horizon file. (Native format, not IESX.)
 
-    Args
+    Args:
         names (list): The names of the columns in the file. If there's
             a header, this is not required. If there is no header, the
             function will attempt to interpret the columns:
+
             - If the first two columns are integers, they are interpreted
                 as inline and crossline numbers.
             - If the first two columns are floats, and there is only one
@@ -190,6 +191,7 @@ def read_odt(fname,
                 or 'iline' for inlines, 'xline' or 'crossline' for crosslines,
                 'x' or 'cdp_x' for x locations, and 'y' or 'cdp_y' for y
                 locations. The names of your attributes are up to you.
+
             If there are 5 columns but you only give 4 names, then only
             the first 4 columns will be loaded.
         usecols (list of ints): The indices of the columns that correspond
@@ -210,7 +212,7 @@ def read_odt(fname,
         attrs (dict): The attributes to add to the Dataset; the filename
             will be added as 'odt_filename'.
 
-    Returns
+    Returns:
         xarray.Dataset: Each data column will be a data variable. Inline and
             crossline — and cdp_x and cdp_y, if present — will be coordinates.
     """

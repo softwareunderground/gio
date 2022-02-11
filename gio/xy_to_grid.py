@@ -138,11 +138,13 @@ def xy_to_grid(x, y, data, compute_array=False):
     """
     Bin a bunch of unsorted (x, y) datapoints into a regular grid.
 
-    Returns
-        arr (ndarray): The binned data.
-        (dx, dy): The spacing between bins in the x and y directions.
-        (addx, addy): The destination of each data point into the grid;
-            n.b. this is given in NumPy (row, col) format.
+    Returns:
+        tuple:
+
+            - arr (ndarray): The binned data.
+            - (dx, dy): The spacing between bins in the x and y directions.
+            - (addx, addy): The destination of each data point into the grid;
+                n.b. this is given in NumPy (row, col) format.
     """
     # Create shapely points.
     X = np.vstack([x, y, data]).T
