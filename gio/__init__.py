@@ -2,6 +2,9 @@ from .opendtect import *
 from .xy_to_grid import *
 from .iesx import *
 from .surfer import read_surfer
+from .zmap import *
+from .random import *
+from .logo import plot
 
 
 from pkg_resources import get_distribution, DistributionNotFound

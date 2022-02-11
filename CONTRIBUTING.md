@@ -1,6 +1,6 @@
 # Contributing
 
-### :raised_hands: Thank you for considering contributing to this project!
+## :raised_hands: Thank you for considering contributing to this project!
 
 There are several important ways you can help; here are some examples:
 

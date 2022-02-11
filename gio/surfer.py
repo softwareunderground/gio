@@ -29,7 +29,6 @@ SOFTWARE.
 """
 from struct import unpack
 from dataclasses import dataclass
-from termios import N_TTY
 import warnings
 
 import numpy as np

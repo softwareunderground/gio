@@ -30,7 +30,9 @@ This library is on PyPI, so you can install it with:
     python -m pip install --upgrade https://github.com/agile-geoscience/gio/archive/develop.zip
 
 
-## Examples
+## Basic usage
+
+In general, there's a reader for each supported file format. The reader produces an `xarray.DataArray`, or `xarray.Dataset` if the format supports multiple surfaces in one file.
 
 ```python
 import gio
@@ -39,7 +41,12 @@ da = gio.read_surfer(fname)
 da.plot()
 ```
 
-See more examples in the **notebooks** folder.
+There are currently no output functions; combing soon!
+
+
+## Documentation
+
+See [the documentation](https://code.agilescieentific.com/gio) for more examples.
 
 
 ## Contributing
@@ -67,7 +74,3 @@ Then to build `gio` locally:
     python -m build
 
 The builds both `.tar.gz` and `.whl` files, either of which you can install with `pip`.
-
----
-
-&copy; 2022 Agile Scientific, openly licenced under Apache 2.0

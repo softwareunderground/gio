@@ -1,8 +1,8 @@
 """
 I/O for OpendTect horizon formats.
 
-:copyright: 2022 Agile Geoscience
-:license: Apache 2.0
+Author: Matt Hall
+License: Apache 2.0
 """
 import warnings
 import re
