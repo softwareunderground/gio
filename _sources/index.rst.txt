@@ -10,7 +10,30 @@ gio: Geo I/O for Subsurface Surfaces
 ====================================
 
     | ``gio`` reads and write subsurface data files
+    
     | describing surfaces, grids and horizons.
+
+
+Quick start
+-----------
+
+.. toctree::
+    :caption: Quick start
+
+Install ``gio`` with pip:
+
+    pip install gio
+
+Read a Surfer grid:
+
+    import gio
+    da = gio.read_surfer('../data/Surfer/surfer-6-ascii-tiny.grd')
+
+``da`` is a two-dimensional ``xarray.DataArray`` object, which is a kind of
+array (NumPy, Dask, Pint, whatever) indexed like a Pandas dataframe. In
+general, you can treat it like an array (or use ``da.data`` to get the
+underlying array, or ``da.values`` to get the underlying array as a
+``numpy.ndarray``).
 
 
 User guide
@@ -24,11 +47,6 @@ User guide
     _notebooks/Read_OpendTect_horizons.ipynb
     _notebooks/Read_Surfer_grids.ipynb
     _notebooks/Random_grids.ipynb
-    development
-    contributing
-    authors
-    license
-    changelog
 
 
 API reference
@@ -39,6 +57,20 @@ API reference
     :caption: API reference
 
     gio
+
+
+Other resources
+---------------
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Other resources
+
+    development
+    contributing
+    authors
+    license
+    changelog
 
 
 Indices and tables
@@ -53,6 +85,9 @@ Indices and tables
     :caption: Project links
     :hidden:
 
-    GitHub repository <https://github.com/agile-geoscience/gio>
+    PyPI releases <https://pypi.org/project/gio/>
+    Code in GitHub <https://github.com/agile-geoscience/gio>
+    Issue tracker <https://github.com/agile-geoscience/gio/issues>
     Community guidelines <https://code.agilescientific.com/community>
+    Agile's software <https://code.agilescientific.com>
     Agile's website <https://www.agilescientific.com>

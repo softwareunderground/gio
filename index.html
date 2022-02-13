@@ -165,20 +165,26 @@
 <li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html">Read surfer grids</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_notebooks/Random_grids.html">Random grids</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gio.html">gio package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other resources</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">CHANGELOG</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="gio.html">gio package</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Project links</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/gio/">PyPI releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio">Code in GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio/issues">Issue tracker</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com/community">Community guidelines</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com">Agile's software</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.agilescientific.com">Agile's website</a></li>
 </ul>
 
@@ -214,9 +220,30 @@
 <blockquote>
 <div><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">gio</span></code> reads and write subsurface data files</div>
+</div>
+<div class="line-block">
 <div class="line">describing surfaces, grids and horizons.</div>
 </div>
 </div></blockquote>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+<p>Install <code class="docutils literal notranslate"><span class="pre">gio</span></code> with pip:</p>
+<blockquote>
+<div><p>pip install gio</p>
+</div></blockquote>
+<p>Read a Surfer grid:</p>
+<blockquote>
+<div><p>import gio
+da = gio.read_surfer(‘../data/Surfer/surfer-6-ascii-tiny.grd’)</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">da</span></code> is a two-dimensional <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> object, which is a kind of
+array (NumPy, Dask, Pint, whatever) indexed like a Pandas dataframe. In
+general, you can treat it like an array (or use <code class="docutils literal notranslate"><span class="pre">da.data</span></code> to get the
+underlying array, or <code class="docutils literal notranslate"><span class="pre">da.values</span></code> to get the underlying array as a
+<code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>).</p>
+</section>
 <section id="user-guide">
 <h2>User guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -239,25 +266,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="_notebooks/Random_grids.html">Random grids</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="development.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="development.html#contributing">Contributing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="development.html#testing">Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="development.html#building-the-package">Building the package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="development.html#building-the-docs">Building the docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="development.html#continuous-integration">Continuous integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#raised-hands-thank-you-for-considering-contributing-to-this-project">:raised_hands: Thank you for considering contributing to this project!</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-data-files">Contributing data files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-of-conduct">Code of conduct</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#authorship">Authorship</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">CHANGELOG</a></li>
 </ul>
 </div>
 </section>
@@ -278,6 +286,19 @@
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-contents">Module contents</a></li>
 </ul>
 </li>
+</ul>
+</div>
+</section>
+<section id="other-resources">
+<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Other resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">CHANGELOG</a></li>
 </ul>
 </div>
 </section>
