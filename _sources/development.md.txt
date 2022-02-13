@@ -26,7 +26,7 @@ Most of the tests are `doctest` tests, which are contained in the docstrings of 
 
 ## Building the package
 
-This repo uses PEP 517-style packaging. [Read more about this](https://setuptools.pypa.io/en/latest/build_meta.html) and [about Python packaging in general](https://packaging.python.org/en/latest/tutorials/packaging-projects/).
+This repo uses PEP 518-style packaging. [Read more about this](https://setuptools.pypa.io/en/latest/build_meta.html) and [about Python packaging in general](https://packaging.python.org/en/latest/tutorials/packaging-projects/).
 
 Building the project requires `build`, so first:
 
@@ -46,7 +46,7 @@ You can build the docs with the following commands:
     cd docs
     make html
 
-Don't just run `sphinx-build manually: there is other stuff happening in the `Makefile`. 
+Don't just run `sphinx-build manually: there is other stuff happening in the `Makefile`.
 
 There is a continuous integration script to update the docs on published releases.
 
