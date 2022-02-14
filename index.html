@@ -230,14 +230,14 @@
 <div class="toctree-wrapper compound">
 </div>
 <p>Install <code class="docutils literal notranslate"><span class="pre">gio</span></code> with pip:</p>
-<blockquote>
-<div><p>pip install gio</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install gio
+</pre></div>
+</div>
 <p>Read a Surfer grid:</p>
-<blockquote>
-<div><p>import gio
-da = gio.read_surfer(‘../data/Surfer/surfer-6-ascii-tiny.grd’)</p>
-</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gio</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">read_surfer</span><span class="p">(</span><span class="s1">'../data/Surfer/surfer-6-ascii-tiny.grd'</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">da</span></code> is a two-dimensional <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> object, which is a kind of
 array (NumPy, Dask, Pint, whatever) indexed like a Pandas dataframe. In
 general, you can treat it like an array (or use <code class="docutils literal notranslate"><span class="pre">da.data</span></code> to get the

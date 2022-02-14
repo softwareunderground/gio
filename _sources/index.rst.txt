@@ -22,9 +22,13 @@ Quick start
 
 Install ``gio`` with pip:
 
+.. code-block:: shell
+
     pip install gio
 
 Read a Surfer grid:
+
+.. code-block:: python
 
     import gio
     da = gio.read_surfer('../data/Surfer/surfer-6-ascii-tiny.grd')
