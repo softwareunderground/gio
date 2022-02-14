@@ -46,7 +46,7 @@ You can build the docs with the following commands:
     cd docs
     make html
 
-Don't just run `sphinx-build manually: there is other stuff happening in the `Makefile`.
+Don't just run `sphinx-build` manually: there is other stuff happening in the `Makefile`.
 
 There is a continuous integration script to update the docs on published releases.
 

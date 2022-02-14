@@ -1,4 +1,4 @@
-# Configuration file for redflag's Sphinx documentation builder.
+# Configuration file for Sphinx documentation builder.
 
 # -- Setup function ----------------------------------------------------------
 

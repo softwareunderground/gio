@@ -1,6 +1,7 @@
 # gio
 
 [![Tests](https://github.com/agile-geoscience/gio/actions/workflows/build-test.yml/badge.svg)](https://github.com/agile-geoscience/gio/actions/workflows/build-test.yml)
+[![Build docs](https://github.com/agile-geoscience/gio/actions/workflows/build-docs.yml/badge.svg)](https://github.com/agile-geoscience/gio/actions/workflows/build-docs.yml)
 [![PyPI version](https://img.shields.io/pypi/v/gio.svg)](https://pypi.org/project/gio/)
 [![PyPI versions](https://img.shields.io/pypi/pyversions/gio.svg)](https://pypi.org/project/gio/)
 [![PyPI license](https://img.shields.io/pypi/l/gio.svg)](https://pypi.org/project/gio/)
@@ -46,31 +47,4 @@ There are currently no output functions; combing soon!
 
 ## Documentation
 
-See [the documentation](https://code.agilescieentific.com/gio) for more examples.
-
-
-## Contributing
-
-Please get involved! See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-
-## Testing
-
-You can run the tests (requires `pytest` and `pytest-cov`) with
-
-    python run_tests.py
-
-
-## Building
-
-This repo uses PEP 517-style packaging. [Read more about this](https://setuptools.pypa.io/en/latest/build_meta.html) and [about Python packaging in general](https://packaging.python.org/en/latest/tutorials/packaging-projects/).
-
-Building the project requires `build`, so first:
-
-    pip install build
-
-Then to build `gio` locally:
-
-    python -m build
-
-The builds both `.tar.gz` and `.whl` files, either of which you can install with `pip`.
+See [the documentation](https://code.agilescieentific.com/gio) for more examples, and for help developing `gio` or making contributions back to this project.
