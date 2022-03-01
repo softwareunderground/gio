@@ -241,3 +241,64 @@ def read_odt(fname,
         dx = df_to_xarray(df, attrs=attrs, origin=origin, step=step)
 
     return dx
+
+def to_odt(dx, fname, dropna=True, header='multiline', **kwargs):
+    """
+    Write an OdT horizon file. (Native format, not IESX.)
+
+    Args:
+        dx (xarray.Dataset): The data to write.
+        fname (str): The name of the file to write.
+        dropna (bool): If True, drop any rows with NaNs from the data. This
+            is usual in OpendTect, but it may make the file harder to read
+            by other software.
+        header (str): The type of header to use. Either 'multiline' or
+            'singleline' is recommended, but 'none' will omit it entirely.
+        **kwargs: Additional arguments to pass to `pandas.DataFrame.to_csv`.
+
+    Returns:
+        None
+    """
+    # Make the dataframe...
+    df = dx.to_dataframe()
+    df = df.reset_index()
+    if dropna:
+        df = df.dropna()
+    # ... and regularize the columns.
+    mapping = {'iline': 'Inline', 'xline': 'Crossline',
+           'cdp_x': 'X', 'cdp_y': 'Y',
+           'twt': 'Z'
+          }
+    df = df.rename(columns=mapping)
+    df.columns = [col.replace('_', ' ').title() for col in df.columns]
+
+    # Construct the header text.
+    if header not in ['multiline', 'singleline', 'none', None]:
+        raise ValueError("header must be one of 'multiline', 'singleline', 'none'.")
+    if header == 'multiline':
+        h = [f"# {i+1}: {col}\n" for i, col in enumerate(df.columns)]
+        h_text = ''.join(h) + "# - - - - - - - - - -\n"
+    elif header == 'singleline':
+        h_text = '# "' + '"\t"'.join(df.columns) + '"\n' + "# - - - - - - - - - -\n"
+    else:
+        h_text = ''
+    
+    # Write the header text.
+    try:
+        fname.write(h_text)  # fname is open file handle.
+    except AttributeError:
+        with open(fname, 'wt') as f:
+            f.write(h_text)
+
+    # Write the data.
+    na_rep = kwargs.pop('na_rep', '1e30')
+    df.to_csv(fname,
+              mode='a',
+              header=False,
+              index=False,
+              sep='\t',
+              na_rep=na_rep,
+              **kwargs
+              )
+
+    return None
