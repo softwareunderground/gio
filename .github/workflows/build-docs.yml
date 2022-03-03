@@ -2,9 +2,7 @@ name: Build docs
 
 on:
   push:
-    branches: [ develop, main ]
-  pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   build-docs:
