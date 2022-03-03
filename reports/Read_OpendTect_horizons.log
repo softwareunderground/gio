@@ -17,40 +17,49 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-ds['twt'].plot()
+fname = '../../data/OdT/3d_horizon/Segment_XY_No-header.dat'
+
+ds = gio.read_odt(fname)
+ds
+
+# Raises an error:
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [2][0m, in [0;36m<cell line: 1>[0;34m()[0m
-[0;32m----> 1[0m [43mds[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mtwt[39;49m[38;5;124;43m'[39;49m[43m][49m[38;5;241;43m.[39;49m[43mplot[49m[43m([49m[43m)[49m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Input [0;32mIn [8][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m fname [38;5;241m=[39m [38;5;124m'[39m[38;5;124m../../data/OdT/3d_horizon/Segment_XY_No-header.dat[39m[38;5;124m'[39m
+[0;32m----> 3[0m ds [38;5;241m=[39m [43mgio[49m[38;5;241;43m.[39;49m[43mread_odt[49m[43m([49m[43mfname[49m[43m)[49m
+[1;32m      4[0m ds
 
-File [0;32m~/.local/lib/python3.8/site-packages/xarray/plot/plot.py:866[0m, in [0;36m_PlotMethods.__call__[0;34m(self, **kwargs)[0m
-[1;32m    865[0m [38;5;28;01mdef[39;00m [38;5;21m__call__[39m([38;5;28mself[39m, [38;5;241m*[39m[38;5;241m*[39mkwargs):
-[0;32m--> 866[0m     [38;5;28;01mreturn[39;00m [43mplot[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_da[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m~/.local/lib/python3.8/site-packages/gio/opendtect.py:222[0m, in [0;36mread_odt[0;34m(fname, names, usecols, na_values, origin, step, attrs)[0m
+[1;32m    170[0m [38;5;28;01mdef[39;00m [38;5;21mread_odt[39m(fname,
+[1;32m    171[0m              names[38;5;241m=[39m[38;5;28;01mNone[39;00m,
+[1;32m    172[0m              usecols[38;5;241m=[39m[38;5;28;01mNone[39;00m,
+[0;32m   (...)[0m
+[1;32m    176[0m              attrs[38;5;241m=[39m[38;5;28;01mNone[39;00m
+[1;32m    177[0m              ):
+[1;32m    178[0m     [38;5;124;03m"""[39;00m
+[1;32m    179[0m [38;5;124;03m    Read an OdT horizon file. (Native format, not IESX.)[39;00m
+[1;32m    180[0m 
+[0;32m   (...)[0m
+[1;32m    220[0m [38;5;124;03m            crossline — and cdp_x and cdp_y, if present — will be coordinates.[39;00m
+[1;32m    221[0m [38;5;124;03m    """[39;00m
+[0;32m--> 222[0m     df [38;5;241m=[39m [43mread_odt_as_df[49m[43m([49m[43mfname[49m[43m,[49m
+[1;32m    223[0m [43m                        [49m[43mnames[49m[38;5;241;43m=[39;49m[43mnames[49m[43m,[49m
+[1;32m    224[0m [43m                        [49m[43musecols[49m[38;5;241;43m=[39;49m[43musecols[49m[43m,[49m
+[1;32m    225[0m [43m                        [49m[43mna_values[49m[38;5;241;43m=[39;49m[43mna_values[49m
+[1;32m    226[0m [43m                        [49m[43m)[49m
+[1;32m    228[0m     attrs [38;5;241m=[39m attrs [38;5;129;01mor[39;00m {}
+[1;32m    229[0m     attrs[38;5;241m.[39mupdate({[38;5;124m'[39m[38;5;124modt_filename[39m[38;5;124m'[39m: fname})
 
-File [0;32m~/.local/lib/python3.8/site-packages/xarray/plot/plot.py:332[0m, in [0;36mplot[0;34m(darray, row, col, col_wrap, ax, hue, rtol, subplot_kws, **kwargs)[0m
-[1;32m    328[0m     plotfunc [38;5;241m=[39m hist
-[1;32m    330[0m kwargs[[38;5;124m"[39m[38;5;124max[39m[38;5;124m"[39m] [38;5;241m=[39m ax
-[0;32m--> 332[0m [38;5;28;01mreturn[39;00m [43mplotfunc[49m[43m([49m[43mdarray[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m~/.local/lib/python3.8/site-packages/gio/opendtect.py:96[0m, in [0;36mread_odt_as_df[0;34m(fname, names, usecols, na_values, **kwargs)[0m
+[1;32m     94[0m [38;5;28;01melse[39;00m:
+[1;32m     95[0m     message [38;5;241m=[39m [38;5;124m'[39m[38;5;124mFirst two columns must be integers to be interpreted as inline and crossline.[39m[38;5;124m'[39m
+[0;32m---> 96[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(message)
+[1;32m     97[0m cols [38;5;241m=[39m [38;5;28mrange[39m([38;5;28mlen[39m(data_cols))
+[1;32m     98[0m names [38;5;241m=[39m ix [38;5;241m+[39m [[38;5;124mf[39m[38;5;124m'[39m[38;5;124mvar_[39m[38;5;132;01m{[39;00mn[38;5;132;01m}[39;00m[38;5;124m'[39m [38;5;28;01mfor[39;00m n [38;5;129;01min[39;00m cols [38;5;28;01mif[39;00m n [38;5;129;01min[39;00m (usecols [38;5;129;01mor[39;00m cols)]
 
-File [0;32m~/.local/lib/python3.8/site-packages/xarray/plot/plot.py:1114[0m, in [0;36m_plot2d.<locals>.newplotfunc[0;34m(darray, x, y, figsize, size, aspect, ax, row, col, col_wrap, xincrease, yincrease, add_colorbar, add_labels, vmin, vmax, cmap, center, robust, extend, levels, infer_intervals, colors, subplot_kws, cbar_ax, cbar_kwargs, xscale, yscale, xticks, yticks, xlim, ylim, norm, **kwargs)[0m
-[1;32m   1111[0m     allargs[[38;5;124m"[39m[38;5;124mplotfunc[39m[38;5;124m"[39m] [38;5;241m=[39m [38;5;28mglobals[39m()[plotfunc[38;5;241m.[39m[38;5;18m__name__[39m]
-[1;32m   1112[0m     [38;5;28;01mreturn[39;00m _easy_facetgrid(darray, kind[38;5;241m=[39m[38;5;124m"[39m[38;5;124mdataarray[39m[38;5;124m"[39m, [38;5;241m*[39m[38;5;241m*[39mallargs)
-[0;32m-> 1114[0m plt [38;5;241m=[39m [43mimport_matplotlib_pyplot[49m[43m([49m[43m)[49m
-[1;32m   1116[0m [38;5;28;01mif[39;00m (
-[1;32m   1117[0m     plotfunc[38;5;241m.[39m[38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m"[39m[38;5;124msurface[39m[38;5;124m"[39m
-[1;32m   1118[0m     [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m kwargs[38;5;241m.[39mget([38;5;124m"[39m[38;5;124m_is_facetgrid[39m[38;5;124m"[39m, [38;5;28;01mFalse[39;00m)
-[1;32m   1119[0m     [38;5;129;01mand[39;00m ax [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
-[1;32m   1120[0m ):
-[1;32m   1121[0m     [38;5;28;01mimport[39;00m [38;5;21;01mmpl_toolkits[39;00m  [38;5;66;03m# type: ignore[39;00m
-
-File [0;32m~/.local/lib/python3.8/site-packages/xarray/plot/utils.py:34[0m, in [0;36mimport_matplotlib_pyplot[0;34m()[0m
-[1;32m     32[0m [38;5;124;03m"""import pyplot"""[39;00m
-[1;32m     33[0m [38;5;66;03m# TODO: This function doesn't do anything (after #6109), remove it?[39;00m
-[0;32m---> 34[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m     36[0m [38;5;28;01mreturn[39;00m plt
-
-[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
-ModuleNotFoundError: No module named 'matplotlib'
+[0;31mTypeError[0m: First two columns must be integers to be interpreted as inline and crossline.
+TypeError: First two columns must be integers to be interpreted as inline and crossline.
 
