@@ -4,10 +4,15 @@ Make gio's logo.
 Author: Matt Hall
 License: Apache 2.0
 """
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.cm import get_cmap
 import hashlib
+import numpy as np
+
+try:
+    import matplotlib.pyplot as plt
+    from matplotlib.cm import get_cmap
+    mpl_installed = True
+except ImportError:
+    mpl_installed = False
 
 from .random import generate_random_surface
 
@@ -16,6 +21,10 @@ def plot(ax=None, fname=None):
     Plots as a side effect. Pass in a 3d Axes if you want. Pass a filename
     to save the plot.
     """
+    if not mpl_installed:
+        m = 'matplotlib is not installed; install it to use this function.'
+        raise ImportError(m)
+
     seed = int(hashlib.sha1("gio".encode()).hexdigest(), 16)
 
     if ax is None:
