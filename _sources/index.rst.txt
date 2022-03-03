@@ -31,7 +31,7 @@ Read a Surfer grid:
 .. code-block:: python
 
     import gio
-    da = gio.read_surfer('../data/Surfer/surfer-6-ascii-tiny.grd')
+    da = gio.read_surfer('surface.grd')
 
 ``da`` is a two-dimensional ``xarray.DataArray`` object, which is a kind of
 array (NumPy, Dask, Pint, whatever) indexed like a Pandas dataframe. In
@@ -48,9 +48,9 @@ User guide
     :caption: User guide
 
     installation
-    _notebooks/Read_OpendTect_horizons.ipynb
-    _notebooks/Read_Surfer_grids.ipynb
-    _notebooks/Random_grids.ipynb
+    userguide/Read_OpendTect_horizons.ipynb
+    userguide/Read_Surfer_grids.ipynb
+    userguide/Random_grids.ipynb
 
 
 API reference

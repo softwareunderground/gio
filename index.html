@@ -158,9 +158,9 @@
   <p class="caption" role="heading"><span class="caption-text">User guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html">Read surfer grids</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Random_grids.html">Random grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
@@ -237,7 +237,7 @@
 </div>
 <p>Read a Surfer grid:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gio</span>
-<span class="n">da</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">read_surfer</span><span class="p">(</span><span class="s1">'../data/Surfer/surfer-6-ascii-tiny.grd'</span><span class="p">)</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">read_surfer</span><span class="p">(</span><span class="s1">'surface.grd'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">da</span></code> is a two-dimensional <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> object, which is a kind of
@@ -252,22 +252,23 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 <p class="caption" role="heading"><span class="caption-text">User guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html">Read OpendTect horizons</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html#il-xl-only-single-line-header-multiple-attributes">IL/XL only, single-line header, multiple attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html#il-xl-and-xy-multi-line-header-multiple-attributes">IL/XL and XY, multi-line header, multiple attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html#xy-only">XY only</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html#sparse-data">Sparse data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html#multiple-horizons-in-one-file">Multiple horizons in one file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html#undefined-values">Undefined values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#il-xl-only-single-line-header-multiple-attributes">IL/XL only, single-line header, multiple attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#il-xl-and-xy-multi-line-header-multiple-attributes">IL/XL and XY, multi-line header, multiple attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#xy-only">XY only</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#sparse-data">Sparse data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#multiple-horizons-in-one-file">Multiple horizons in one file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#undefined-values">Undefined values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html#writing-odt-files">Writing OdT files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html">Read surfer grids</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html#a-small-binary-file">A small binary file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html#another-ascii">Another ASCII</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html#a-binary-file">A binary file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_Surfer_grids.html#a-small-binary-file">A small binary file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_Surfer_grids.html#another-ascii">Another ASCII</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_Surfer_grids.html#a-binary-file">A binary file</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Random_grids.html">Random grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 </div>
 </section>
@@ -278,7 +279,8 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gio.html">gio package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gio.html#gio-iesx-module">gio.iesx module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gio.html#gio-dem-module">gio.dem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.iesx">gio.iesx module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#gio-logo-module">gio.logo module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.opendtect">gio.opendtect module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.random">gio.random module</a></li>

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Development" href="development.html" /><link rel="prev" title="Random grids" href="_notebooks/Random_grids.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Development" href="development.html" /><link rel="prev" title="Random grids" href="userguide/Random_grids.html" />
 
     <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
         <title>gio package - gio documentation</title>
@@ -158,9 +158,9 @@
   <p class="caption" role="heading"><span class="caption-text">User guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Read_Surfer_grids.html">Read surfer grids</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_notebooks/Random_grids.html">Random grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul class="current">
@@ -219,8 +219,21 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
 </section>
-<section id="gio-iesx-module">
-<h2>gio.iesx module<a class="headerlink" href="#gio-iesx-module" title="Permalink to this headline">#</a></h2>
+<section id="gio-dem-module">
+<h2>gio.dem module<a class="headerlink" href="#gio-dem-module" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="module-gio.iesx">
+<span id="gio-iesx-module"></span><h2>gio.iesx module<a class="headerlink" href="#module-gio.iesx" title="Permalink to this headline">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.iesx.check_dialect">
+<span class="sig-prename descclassname"><span class="pre">gio.iesx.</span></span><span class="sig-name descname"><span class="pre">check_dialect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.iesx.check_dialect" title="Permalink to this definition">#</a></dt>
+<dd><p>Decide if IESX file is from Petrel or OpendTect.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.iesx.read_iesx_from_petrel">
+<span class="sig-prename descclassname"><span class="pre">gio.iesx.</span></span><span class="sig-name descname"><span class="pre">read_iesx_from_petrel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.iesx.read_iesx_from_petrel" title="Permalink to this definition">#</a></dt>
+<dd><p>Read a Petrel IESX file and create a GeoPandas DataFrame.</p>
+</dd></dl>
 </section>
 <section id="gio-logo-module">
 <h2>gio.logo module<a class="headerlink" href="#gio-logo-module" title="Permalink to this headline">#</a></h2>
@@ -345,13 +358,19 @@ And optionally transform to snake case.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.to_odt">
-<span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">to_odt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'multiline'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.to_odt" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">to_odt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_twt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'multiline'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.to_odt" title="Permalink to this definition">#</a></dt>
 <dd><p>Write an OdT horizon file. (Native format, not IESX.)</p>
+<p>There is an unhealthy amount of magic in this function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dx</strong> (<em>xarray.Dataset</em>) – The data to write.</p></li>
 <li><p><strong>fname</strong> (<em>str</em>) – The name of the file to write.</p></li>
+<li><p><strong>dx</strong> (<em>xarray.Dataset</em>) – The data to write.</p></li>
+<li><p><strong>multi</strong> (<em>bool</em>) – Whether you want a multi-horizon export.</p></li>
+<li><p><strong>twt</strong> (<em>str</em>) – The name of the variable containing the two-way time, if
+not ‘twt’.</p></li>
+<li><p><strong>force_twt</strong> (<em>bool</em>) – Whether to force the first variable to be two-way
+time. If there’s more than one variable, this throws a warning.</p></li>
 <li><p><strong>dropna</strong> (<em>bool</em>) – If True, drop any rows with NaNs from the data. This
 is usual in OpendTect, but it may make the file harder to read
 by other software.</p></li>
@@ -665,7 +684,7 @@ you only have points to transform.</p>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="_notebooks/Random_grids.html">
+          <a class="prev-page" href="userguide/Random_grids.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
@@ -717,7 +736,8 @@ you only have points to transform.</p>
             <ul>
 <li><a class="reference internal" href="#">gio package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#gio-iesx-module">gio.iesx module</a></li>
+<li><a class="reference internal" href="#gio-dem-module">gio.dem module</a></li>
+<li><a class="reference internal" href="#module-gio.iesx">gio.iesx module</a></li>
 <li><a class="reference internal" href="#gio-logo-module">gio.logo module</a></li>
 <li><a class="reference internal" href="#module-gio.opendtect">gio.opendtect module</a></li>
 <li><a class="reference internal" href="#module-gio.random">gio.random module</a></li>

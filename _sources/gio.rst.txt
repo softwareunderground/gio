@@ -4,6 +4,14 @@ gio package
 Submodules
 ----------
 
+gio.dem module
+--------------
+
+.. automodule:: gio.dem
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gio.iesx module
 ---------------
 
