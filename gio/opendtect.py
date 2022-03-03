@@ -6,6 +6,9 @@ License: Apache 2.0
 """
 import warnings
 import re
+import csv
+from io import StringIO
+
 import pandas as pd
 import xarray as xr
 import numpy as np
@@ -242,13 +245,20 @@ def read_odt(fname,
 
     return dx
 
-def to_odt(dx, fname, dropna=True, header='multiline', **kwargs):
+def to_odt(fname, dx, multi=False, twt=None, force_twt=True, name=None, dropna=True, header='multiline', **kwargs):
     """
     Write an OdT horizon file. (Native format, not IESX.)
+    
+    There is an unhealthy amount of magic in this function.
 
     Args:
-        dx (xarray.Dataset): The data to write.
         fname (str): The name of the file to write.
+        dx (xarray.Dataset): The data to write.
+        multi (bool): Whether you want a multi-horizon export.
+        twt (str): The name of the variable containing the two-way time, if
+            not 'twt'.
+        force_twt (bool): Whether to force the first variable to be two-way
+            time. If there's more than one variable, this throws a warning.
         dropna (bool): If True, drop any rows with NaNs from the data. This
             is usual in OpendTect, but it may make the file harder to read
             by other software.
@@ -259,16 +269,42 @@ def to_odt(dx, fname, dropna=True, header='multiline', **kwargs):
     Returns:
         None
     """
+    # Deal with multi-horizon case, which can only have Z / twt, but can
+    # have IL/XL and X/Y, and can have single, multi, or no header.
+    # Split into DataArrays and call this function on each.
+    if multi:
+        strs = []
+        for name, da in dx.data_vars.items():
+            db = da.rename('twt')
+            sio = StringIO()
+            _ = to_odt(sio, db, twt=twt, name=name, dropna=dropna, header=header, **kwargs)
+            strs.append(sio.getvalue())
+        with open(fname, 'wt') as f:
+            f.write('\n'.join(strs))
+        return
+    
+    # Continue with single-horizon case.
+
     # Make the dataframe...
     df = dx.to_dataframe()
+    if (twt is None) and force_twt and ('twt' not in df.columns):
+        # Use the first column for twt.
+        if (len(df.columns)>1):
+            # Warn if there are several columns.
+            message = 'Assuming first column is TWT; pass force_twt=False to prevent this.'
+            warnings.warn(message, stacklevel=2)
+        # Assume twt is first non-special column.
+        twt = [c for c in df.columns if c not in ['cdp_x', 'cdp_y']][0]
+    else:
+        twt = twt or 'twt'
     df = df.reset_index()
     if dropna:
         df = df.dropna()
     # ... and regularize the columns.
     mapping = {'iline': 'Inline', 'xline': 'Crossline',
-           'cdp_x': 'X', 'cdp_y': 'Y',
-           'twt': 'Z'
-          }
+               'cdp_x': 'X', 'cdp_y': 'Y',
+               twt: 'Z'
+               }
     df = df.rename(columns=mapping)
     df.columns = [col.replace('_', ' ').title() for col in df.columns]
 
@@ -289,6 +325,12 @@ def to_odt(dx, fname, dropna=True, header='multiline', **kwargs):
     except AttributeError:
         with open(fname, 'wt') as f:
             f.write(h_text)
+            
+    # Add the 'name' column, if required (only for multi-horizon export).
+    if name is not None:
+        cols = df.columns
+        df['_'] = name
+        df = df[['_'] + list(cols)]
 
     # Write the data.
     na_rep = kwargs.pop('na_rep', '1e30')
@@ -298,6 +340,8 @@ def to_odt(dx, fname, dropna=True, header='multiline', **kwargs):
               index=False,
               sep='\t',
               na_rep=na_rep,
+              quotechar='"',
+              quoting=csv.QUOTE_NONNUMERIC,
               **kwargs
               )
 

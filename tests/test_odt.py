@@ -41,9 +41,9 @@ def test_write_odt():
     """
     sio = StringIO()
     ds = gio.read_odt('data/OdT/3d_horizon/Segment_ILXL_Single-line-header.dat')
-    _ = gio.to_odt(ds, sio, header='none')
+    _ = gio.to_odt(sio, ds, header='none')
     assert sio.getvalue()[:7].split() == ['376', '914']
 
     sio = StringIO()
-    _ = gio.to_odt(ds, sio)
+    _ = gio.to_odt(sio, ds)
     assert sio.getvalue()[:11] == '# 1: Inline'
