@@ -16,7 +16,7 @@ def plot(ax=None, fname=None):
     Plots as a side effect. Pass in a 3d Axes if you want. Pass a filename
     to save the plot.
     """
-    seed = int(hashlib.sha1("gi/o".encode()).hexdigest(), 16)
+    seed = int(hashlib.sha1("gio".encode()).hexdigest(), 16)
 
     if ax is None:
         fig = plt.figure(figsize=(12, 12))
@@ -31,11 +31,10 @@ def plot(ax=None, fname=None):
     Z = 240 * Z + 240
     ax.axis('off')
 
+    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='RdBu')
+    ax.plot_wireframe(X, Y, Z, color='k', lw=0.5, alpha=0.75)
     c = get_cmap('gray')
-    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='viridis')
-    ax.plot_wireframe(X, Y, Z, color='white', lw=0.5)
-    ax.text(-14, 20, 220, r"$\mathbf{gi\ o}$", size=240, zorder=10, color=c(0.4))
-    ax.text(6, 32, 220, r"$\mathbf{/}$", size=240, zorder=10, color=c(0.7))
+    ax.text(-10, 20, 220, r"$\mathbf{gio}$", size=240, zorder=10, color=c(0.15))
     ax.set_zlim(0, 1200)
 
     if fname is not None:
