@@ -1,6 +1,6 @@
 # Authors
 
-The following people have constributed to the project (in alphabetical order):
+The following people have contributed to the project (in alphabetical order):
 
 - [Martin Bentley](https://github.com/mtb-za), Agile Scientific, Canada
 - [Evan Bianco](https://github.com/EvanBianco), Agile Scientific, Canada

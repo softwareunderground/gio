@@ -1,7 +1,7 @@
 # gio
 
-[![Tests](https://github.com/agile-geoscience/gio/actions/workflows/build-test.yml/badge.svg)](https://github.com/agile-geoscience/gio/actions/workflows/build-test.yml)
-[![Build docs](https://github.com/agile-geoscience/gio/actions/workflows/build-docs.yml/badge.svg)](https://github.com/agile-geoscience/gio/actions/workflows/build-docs.yml)
+[![Tests](https://github.com/agilescientific/gio/actions/workflows/build-test.yml/badge.svg)](https://github.com/agilescientific/gio/actions/workflows/build-test.yml)
+[![Build docs](https://github.com/agilescientific/gio/actions/workflows/build-docs.yml/badge.svg)](https://github.com/agilescientific/gio/actions/workflows/build-docs.yml)
 [![PyPI version](https://img.shields.io/pypi/v/gio.svg)](https://pypi.org/project/gio/)
 [![PyPI versions](https://img.shields.io/pypi/pyversions/gio.svg)](https://pypi.org/project/gio/)
 [![PyPI license](https://img.shields.io/pypi/l/gio.svg)](https://pypi.org/project/gio/)
@@ -17,7 +17,7 @@ We've started with:
 - Surfer grids
 - Petrel horizons
 
-**What formats would you like to see? [Make an issue](https://github.com/agile-geoscience/gio/issues).**
+**What formats would you like to see? [Make an issue](https://github.com/agilescientific/gio/issues).**
 
 
 ## Installation
@@ -28,7 +28,7 @@ This library is on PyPI, so you can install it with:
 
  To get the latest unstable release, you can install it from GitHub:
 
-    python -m pip install --upgrade https://github.com/agile-geoscience/gio/archive/develop.zip
+    python -m pip install --upgrade https://github.com/agilescientific/gio/archive/develop.zip
 
 
 ## Basic usage
@@ -42,7 +42,7 @@ da = gio.read_surfer(fname)
 da.plot()
 ```
 
-There are currently no output functions; combing soon!
+There are currently no output functions; coming soon!
 
 
 ## Documentation
