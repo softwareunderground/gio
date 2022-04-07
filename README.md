@@ -47,4 +47,4 @@ There are currently no output functions; coming soon!
 
 ## Documentation
 
-See [the documentation](https://code.agilescieentific.com/gio) for more examples, and for help developing `gio` or making contributions back to this project.
+See [the documentation](https://code.agilescientific.com/gio) for more examples, and for help developing `gio` or making contributions back to this project.
