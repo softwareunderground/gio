@@ -223,13 +223,37 @@
           <section class="tex2jax_ignore mathjax_ignore" id="changelog">
 <h1>CHANGELOG<a class="headerlink" href="#changelog" title="Permalink to this heading">#</a></h1>
 <section id="september-2022">
-<h2>0.1.7, September 2022<a class="headerlink" href="#september-2022" title="Permalink to this heading">#</a></h2>
+<h2>0.1.6, 11 September 2022<a class="headerlink" href="#september-2022" title="Permalink to this heading">#</a></h2>
+<p>The overall plan of <code class="docutils literal notranslate"><span class="pre">gio</span></code> is starting to take shape. In general, the plan is to read specialist subsurace formats of various file types, with either <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> or <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> as the target. Then, <code class="docutils literal notranslate"><span class="pre">gio</span></code> will write these same formats via an accessor method on the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object (and possibly also via ordinary functions). This release implements this pattern for the first time, specifically for the ZMAP format.</p>
 <ul class="simple">
-<li><p>Added <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> accessor (in <code class="docutils literal notranslate"><span class="pre">xarray.py</span></code>) to save in ZMAP and OpendTect formats. The plan is to add more formats according to need.</p></li>
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">zmap</span></code> module, with functions for reading ZMAP files (<code class="docutils literal notranslate"><span class="pre">read_zmap()</span></code>) and for writing files starting from an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> or from a NumPy array.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> accessor (in <code class="docutils literal notranslate"><span class="pre">xarray.py</span></code>) to save in ZMAP and OpendTect formats. The plan is to add more target formats the the accessor, according to need.</p></li>
+<li><p>Added tests for the ZMAP components. Removed <code class="docutils literal notranslate"><span class="pre">run_tests.py</span></code> and put the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> options in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, which seems cleaner.</p></li>
+<li><p>Started trying to maintain this file properly!</p></li>
+<li><p>Note that there are two ‘work in progress’ modules: <code class="docutils literal notranslate"><span class="pre">esri.py</span></code> and <code class="docutils literal notranslate"><span class="pre">usgs.py</span></code>, which will eventually read some common DEM formats.</p></li>
+</ul>
+<p>In general, everything is a work in progress but if there is a chapter on something in <a class="reference external" href="https://code.agilescientific.com/gio/index.html#user-guide">the User Guide</a> then it mostly works, at least for the test cases I have. If you have a file that should work but doesn’t, please consider <a class="reference external" href="https://github.com/agilescientific/gio/issues">making an issue</a>.</p>
+<p>Feedback is welcome on whether the target format for readers should be <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> every time, even for singleton files.</p>
+</section>
+<section id="february-2022">
+<h2>0.1.5, 12 February 2022<a class="headerlink" href="#february-2022" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">random</span></code> module, which generates random surfaces using sums of Perlin noise. The high-level interface is <code class="docutils literal notranslate"><span class="pre">gio.generate_random_surface()</span></code>. Also added a notebook for help on this module.</p></li>
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">logo</span></code> module, which plots gio’s logo. Using the logo in the docs.</p></li>
 </ul>
 </section>
-<section id="early-releases-january-to-june-2022">
-<h2>Early releases, January to June 2022<a class="headerlink" href="#early-releases-january-to-june-2022" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h2>0.1.4, 3 February 2022<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>New module: <code class="docutils literal notranslate"><span class="pre">surfer</span></code>, adapted from Seequent’s <a class="reference external" href="https://pypi.org/project/steno3d_surfer"><code class="docutils literal notranslate"><span class="pre">steno3d_surfer</span></code></a>, for reading Surfer 6 binary and ASCII files, and Surfer 7 binary files. The module does not write files yet.</p></li>
+<li><p>Started development on <code class="docutils literal notranslate"><span class="pre">iesx</span></code> module for reading IESX formatted files, eg from Petrel or OpendTect</p></li>
+</ul>
+</section>
+<section id="to-0-1-3-february-2022">
+<h2>0.1.0 to 0.1.3, February 2022<a class="headerlink" href="#to-0-1-3-february-2022" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Early development included setting up the package, and adding the <code class="docutils literal notranslate"><span class="pre">opendtect</span></code> and <code class="docutils literal notranslate"><span class="pre">xy_to_grid</span></code> modules.</p></li>
+</ul>
 </section>
 </section>
 
@@ -290,8 +314,10 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">CHANGELOG</a><ul>
-<li><a class="reference internal" href="#september-2022">0.1.7, September 2022</a></li>
-<li><a class="reference internal" href="#early-releases-january-to-june-2022">Early releases, January to June 2022</a></li>
+<li><a class="reference internal" href="#september-2022">0.1.6, 11 September 2022</a></li>
+<li><a class="reference internal" href="#february-2022">0.1.5, 12 February 2022</a></li>
+<li><a class="reference internal" href="#id1">0.1.4, 3 February 2022</a></li>
+<li><a class="reference internal" href="#to-0-1-3-february-2022">0.1.0 to 0.1.3, February 2022</a></li>
 </ul>
 </li>
 </ul>

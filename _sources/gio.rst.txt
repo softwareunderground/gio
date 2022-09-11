@@ -4,10 +4,10 @@ gio package
 Submodules
 ----------
 
-gio.dem module
---------------
+gio.esri module
+---------------
 
-.. automodule:: gio.dem
+.. automodule:: gio.esri
    :members:
    :undoc-members:
    :show-inheritance:
