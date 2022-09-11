@@ -165,8 +165,6 @@
 <li class="toctree-l1"><a class="reference internal" href="Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Read_Surfer_grids.html">Read surfer grids</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Read and write ZMAP files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#use-the-function">Use the function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
@@ -222,7 +220,7 @@
           </label>
         </div>
         <article role="main">
-          <section id="read-and-write-zmap-files">
+          <section class="tex2jax_ignore mathjax_ignore" id="read-and-write-zmap-files">
 <h1>Read and write ZMAP files<a class="headerlink" href="#read-and-write-zmap-files" title="Permalink to this heading">#</a></h1>
 <p>The venerable ZMAP format looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! Landmark Zmap grid file name:   .DATANSLCU.dat
@@ -278,7 +276,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f53aac5d130&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f9838588130&gt;
 </pre></div>
 </div>
 <img alt="../_images/2417a2b92a309e25659f8426d5981f0bc0e4e3dbd69e1a1edc603feea8812fc2.png" src="../_images/2417a2b92a309e25659f8426d5981f0bc0e4e3dbd69e1a1edc603feea8812fc2.png" />
@@ -664,7 +662,7 @@ Coordinates:
 Attributes:
     fname:       ../../data/ZMAP/NStopo.dat
     null_value:  1e+30
-    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-76207c40-d2cb-4948-a5f3-daab1cc7f561' class='xr-array-in' type='checkbox' checked><label for='section-76207c40-d2cb-4948-a5f3-daab1cc7f561' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
+    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-207f464f-8210-4a75-b99d-9dae3fbccff4' class='xr-array-in' type='checkbox' checked><label for='section-207f464f-8210-4a75-b99d-9dae3fbccff4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
           656.3284302,   581.6201782],
        [  -50.7771301,   -43.4010925,   -40.3817444, ...,   626.8185425,
           587.7715454,   528.4921265],
@@ -676,7 +674,7 @@ Attributes:
        [  -67.5697021,   -72.6132202,   -81.2595825, ..., -2409.6945801,
         -2391.8217773, -2376.5600586],
        [  -67.2144775,   -74.9806519,   -82.2666016, ..., -2416.8630371,
-        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-3f52cfb6-baf3-4775-8dc4-55b4a15240a9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3f52cfb6-baf3-4775-8dc4-55b4a15240a9' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-8ebf1fcf-945a-44e5-8079-231dcacf705a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8ebf1fcf-945a-44e5-8079-231dcacf705a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e90e077-1625-4f56-82e5-372323ac34aa' class='xr-var-data-in' type='checkbox'><label for='data-8e90e077-1625-4f56-82e5-372323ac34aa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-32bd16b6-567c-42f4-a491-b12b553006ee' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-32bd16b6-567c-42f4-a491-b12b553006ee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-64c39230-d27a-41ce-839d-d4d1d37ca233' class='xr-var-data-in' type='checkbox'><label for='data-64c39230-d27a-41ce-839d-d4d1d37ca233' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a596c85a-40b6-452b-ba1e-524f5091898e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a596c85a-40b6-452b-ba1e-524f5091898e' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
+        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-4bc9c30e-9f24-46f0-90cf-8f084706746b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4bc9c30e-9f24-46f0-90cf-8f084706746b' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-4676e99d-dae2-457a-9319-dd1a7156d4af' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4676e99d-dae2-457a-9319-dd1a7156d4af' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-569578c9-dd22-4f07-b675-e4ce86ddbc8d' class='xr-var-data-in' type='checkbox'><label for='data-569578c9-dd22-4f07-b675-e4ce86ddbc8d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-7842cfd7-8fd8-4274-a4c1-9930f45c0f02' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7842cfd7-8fd8-4274-a4c1-9930f45c0f02' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-75b41975-d07c-4a2c-a34b-40fbf52d6589' class='xr-var-data-in' type='checkbox'><label for='data-75b41975-d07c-4a2c-a34b-40fbf52d6589' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-384ddd31-d862-41ff-ba20-62a20d275230' class='xr-section-summary-in' type='checkbox'  checked><label for='section-384ddd31-d862-41ff-ba20-62a20d275230' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <section id="transform-the-surface">
 <h2>Transform the surface<a class="headerlink" href="#transform-the-surface" title="Permalink to this heading">#</a></h2>
@@ -689,9 +687,8 @@ Attributes:
 </div>
 </div>
 </section>
-</section>
 <section id="use-the-xarray-accessory">
-<h1>Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory<a class="headerlink" href="#use-the-xarray-accessory" title="Permalink to this heading">#</a></h1>
+<h2>Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory<a class="headerlink" href="#use-the-xarray-accessory" title="Permalink to this heading">#</a></h2>
 <p>If your surface is held in an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> then the accessory is the easiest way to save it in ZMAP format.</p>
 <p>To use it, access the <code class="docutils literal notranslate"><span class="pre">to_zmap()</span></code> function in the <code class="docutils literal notranslate"><span class="pre">gio</span></code> accessory. After importing <code class="docutils literal notranslate"><span class="pre">gio</span></code>, the accessory is attached to every instance of a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code>.</p>
 <div class="cell docutils container">
@@ -725,7 +722,7 @@ Attributes:
 </div>
 </section>
 <section id="use-the-function">
-<h1>Use the function<a class="headerlink" href="#use-the-function" title="Permalink to this heading">#</a></h1>
+<h2>Use the function<a class="headerlink" href="#use-the-function" title="Permalink to this heading">#</a></h2>
 <p>If your surface is a NumPy array, then you can use the <code class="docutils literal notranslate"><span class="pre">array_to_zmap()</span></code> function.</p>
 <p>Note that if you want the ZMAP file to have real-world coordinates, you will need to provide the <code class="docutils literal notranslate"><span class="pre">extent</span></code> as a list or tuple of min X, max X, min Y, max Y. For example:</p>
 <div class="cell docutils container">
@@ -759,6 +756,7 @@ Attributes:
 </div>
 </div>
 </div>
+</section>
 </section>
 
         </article>
@@ -827,10 +825,10 @@ Attributes:
             <ul>
 <li><a class="reference internal" href="#">Read and write ZMAP files</a><ul>
 <li><a class="reference internal" href="#transform-the-surface">Transform the surface</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
 <li><a class="reference internal" href="#use-the-function">Use the function</a></li>
+</ul>
+</li>
 </ul>
 
           </div>
