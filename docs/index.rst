@@ -50,6 +50,7 @@ User guide
     installation
     userguide/Read_OpendTect_horizons.ipynb
     userguide/Read_Surfer_grids.ipynb
+    userguide/Read_and_write_ZMAP_files.ipynb
     userguide/Random_grids.ipynb
 
 

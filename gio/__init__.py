@@ -4,6 +4,7 @@ from .iesx import *
 from .surfer import read_surfer
 from .zmap import *
 from .random import *
+from .xarray import SurfaceAccessor
 from .logo import plot
 
 

@@ -153,7 +153,9 @@ def generate_random_surface(size,
                             octaves=2,
                             lacunarity=2,
                             persistence=0.5,
-                            random_seed=None
+                            random_seed=None,
+                            name=None,
+                            coords='i,j',
                             ):
     """
     Make a square grid of **at least** the given size (length of side), with
@@ -170,6 +172,9 @@ def generate_random_surface(size,
         persistence (float): persistence of the noise (amplitude factor between
             octaves). Default: 0.5.
         random_seed (int): random seed.
+        name (str): name of the resulting array, optional. Default: None.
+        coords (str): names of spatial coordinates, separated by commas.
+            Default: i and j.
 
     Returns:
         xarray.DataArray: the grid.
@@ -201,8 +206,16 @@ def generate_random_surface(size,
                           rng=rng
                           )
     i, j = map(np.arange, noise.shape)
+
+    try:
+        dims = [n.strip() for n in coords.split(',')]
+    except:
+        raise ValueError('Could not find coordinates; give a string with commas to separate the coords representing real-world x and y respectively.')
+
     return xr.DataArray(noise,
-                        dims=('i', 'j'),
-                        coords={'i': i,
-                                'j': j},
-                        attrs={'source': 'gio.random',})
+                        dims=dims,
+                        coords=dict(zip(dims, (i, j))),
+                        name=name,
+                        attrs={'source': 'gio.random',
+                               'description': 'Fractal Perlin noise',
+                               })
