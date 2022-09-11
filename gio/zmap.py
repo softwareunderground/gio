@@ -103,7 +103,7 @@ def array_to_zmap(fname,
     else:
         comments = comment
 
-    zgrid.comments = comment
+    zgrid.comments = comments
     zgrid.nodes_per_line = nodes_per_line
     zgrid.field_width = field_width
     zgrid.decimal_places = precision

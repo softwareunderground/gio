@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 0.1.7, in progress
+
+- Fixed [issue #26](https://github.com/agilescientific/gio/issues/26), which garbled string comments in `array_to_zmap()`.
+
+
 ## 0.1.6, 11 September 2022
 
 The overall plan of `gio` is starting to take shape. In general, the plan is to read specialist subsurace formats of various file types, with either `xarray.Dataset` or `xarray.DataArray` as the target. Then, `gio` will write these same formats via an accessor method on the `xarray` object (and possibly also via ordinary functions). This release implements this pattern for the first time, specifically for the ZMAP format.
