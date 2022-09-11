@@ -1,7 +1,9 @@
 """
-Read 2D ASCII/binary Surfer grid files.
+Read E00 format DEM (digital elevation model) files.
 
-:copyright: 2022 Agile Geoscience (this adaptation)
+THIS IS A WORK IN PROGRESS.  IT DOES NOT WORK YET.
+
+:copyright: 2022 Agile Geoscience
 :license: Apache 2.0
 """
 import numpy as np
@@ -29,5 +31,14 @@ def read_e00_text(fname):
 
     p = re.compile(r"IFO(.+?)EOI", flags=re.DOTALL)
     ifo, = p.search(text).groups()
+
+    # Unflatten this thing.
+    values = []
+    for row in data:
+        for col in row:
+            values.append(float(col))
+
+    # Convert to an array and reshape.
+    arr = np.array(values).reshape(ny, nx)
 
     return arr

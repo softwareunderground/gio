@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Special case: binning data with only (x, y) coords.
 
