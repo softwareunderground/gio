@@ -1,5 +1,5 @@
 Traceback (most recent call last):
-  File "/home/runner/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/home/runner/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/.local/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
@@ -27,7 +27,7 @@ ds
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-Input [0;32mIn [8][0m, in [0;36m<cell line: 3>[0;34m()[0m
+Cell [0;32mIn [8], line 3[0m
 [1;32m      1[0m fname [38;5;241m=[39m [38;5;124m'[39m[38;5;124m../../data/OdT/3d_horizon/Segment_XY_No-header.dat[39m[38;5;124m'[39m
 [0;32m----> 3[0m ds [38;5;241m=[39m [43mgio[49m[38;5;241;43m.[39;49m[43mread_odt[49m[43m([49m[43mfname[49m[43m)[49m
 [1;32m      4[0m ds

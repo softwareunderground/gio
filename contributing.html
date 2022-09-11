@@ -1,17 +1,17 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Authors" href="authors.html" /><link rel="prev" title="Development" href="development.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Contributing - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
     
@@ -37,12 +37,14 @@
       }
     }
   }
-</style></head>
+</style><script defer data-domain="code.agilescientific.com" src="https://plausible.io/js/plausible.js"></script></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -162,6 +164,9 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-function">Use the function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
@@ -179,8 +184,8 @@
 <p class="caption" role="heading"><span class="caption-text">Project links</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/gio/">PyPI releases</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio">Code in GitHub</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio/issues">Issue tracker</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio">Code in GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio/issues">Issue tracker</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com/community">Community guidelines</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com">Agile's software</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.agilescientific.com">Agile's website</a></li>
@@ -202,7 +207,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -217,12 +223,12 @@
         </div>
         <article role="main">
           <section class="tex2jax_ignore mathjax_ignore" id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h1>
-<section id="raised-hands-thank-you-for-considering-contributing-to-this-project">
-<h2>:raised_hands: Thank you for considering contributing to this project!<a class="headerlink" href="#raised-hands-thank-you-for-considering-contributing-to-this-project" title="Permalink to this headline">#</a></h2>
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading">#</a></h1>
+<section id="raised-hands-thank-you-for-considering-contributing-to-the-gio-project">
+<h2>:raised_hands: Thank you for considering contributing to the <code class="docutils literal notranslate"><span class="pre">gio</span></code> project!<a class="headerlink" href="#raised-hands-thank-you-for-considering-contributing-to-the-gio-project" title="Permalink to this heading">#</a></h2>
 <p>There are several important ways you can help; here are some examples:</p>
 <ul class="simple">
-<li><p>Submitting bug reports and feature requests: see <a class="reference external" href="https://github.com/agile-geoscience/gio/issues">Issues</a>.</p></li>
+<li><p>Submitting bug reports and feature requests: see <a class="reference external" href="https://github.com/agilescientific/gio/issues">Issues</a>.</p></li>
 <li><p>Proposing code for bug fixes and new features, then <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">making a pull request</a>.</p></li>
 <li><p>Contributing data files to test against. See below.</p></li>
 <li><p>Fixing typos and generally improving the documentation.</p></li>
@@ -230,17 +236,21 @@
 </ul>
 </section>
 <section id="contributing-data-files">
-<h2>Contributing data files<a class="headerlink" href="#contributing-data-files" title="Permalink to this headline">#</a></h2>
+<h2>Contributing data files<a class="headerlink" href="#contributing-data-files" title="Permalink to this heading">#</a></h2>
 <p>This is a data-driven project and data files are always helpful, especially if they differ substantially from examples we already have.</p>
 <p>Please ensure that data is open access and provide a licence file with it. please also make them as small as possible, preferably well under 1MB.</p>
 </section>
 <section id="code-of-conduct">
-<h2>Code of conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this headline">#</a></h2>
-<p>We’re fortunate to be part of a large professional community that conducts itself with mutual respect and consideration for others. Agile’s <a class="reference external" href="https://github.com/agile-geoscience/corporate/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a> is part of protecting these features for everyone, everywhere. Please read it.</p>
+<h2>Code of conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this heading">#</a></h2>
+<p>We’re fortunate to be part of a large professional community that conducts itself with mutual respect and consideration for others. Agile’s <a class="reference external" href="https://github.com/agilescientific/corporate/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a> is part of protecting these features for everyone, everywhere. Please read it.</p>
 </section>
 <section id="authorship">
-<h2>Authorship<a class="headerlink" href="#authorship" title="Permalink to this headline">#</a></h2>
-<p>If you contribute a pull request to the project, please add yourself to <code class="docutils literal notranslate"><span class="pre">AUTHORS.md</span></code>.</p>
+<h2>Authorship<a class="headerlink" href="#authorship" title="Permalink to this heading">#</a></h2>
+<p>If you contribute a pull request to the project and you wish to be identified as an author, please add yourself to <code class="docutils literal notranslate"><span class="pre">AUTHORS.md</span></code>.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">#</a></h2>
+<p>By making a contribution, you agree that it shall be governed by the terms of <span class="xref myst">the license</span> unless another, specific agreement is made with Agile.</p>
 </section>
 </section>
 
@@ -273,9 +283,9 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                &#169; 2022, Agile Scientific | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a>
+                Copyright &#169; 2022, Agile Scientific
             </div>
-            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and 
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             
@@ -309,10 +319,11 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Contributing</a><ul>
-<li><a class="reference internal" href="#raised-hands-thank-you-for-considering-contributing-to-this-project">:raised_hands: Thank you for considering contributing to this project!</a></li>
+<li><a class="reference internal" href="#raised-hands-thank-you-for-considering-contributing-to-the-gio-project">:raised_hands: Thank you for considering contributing to the <code class="docutils literal notranslate"><span class="pre">gio</span></code> project!</a></li>
 <li><a class="reference internal" href="#contributing-data-files">Contributing data files</a></li>
 <li><a class="reference internal" href="#code-of-conduct">Code of conduct</a></li>
 <li><a class="reference internal" href="#authorship">Authorship</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -327,6 +338,7 @@
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>

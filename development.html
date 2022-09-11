@@ -1,17 +1,17 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Contributing" href="contributing.html" /><link rel="prev" title="gio package" href="gio.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Development - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
     
@@ -37,12 +37,14 @@
       }
     }
   }
-</style></head>
+</style><script defer data-domain="code.agilescientific.com" src="https://plausible.io/js/plausible.js"></script></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -162,6 +164,9 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-function">Use the function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
@@ -179,8 +184,8 @@
 <p class="caption" role="heading"><span class="caption-text">Project links</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/gio/">PyPI releases</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio">Code in GitHub</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio/issues">Issue tracker</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio">Code in GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio/issues">Issue tracker</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com/community">Community guidelines</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com">Agile's software</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.agilescientific.com">Agile's website</a></li>
@@ -202,7 +207,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -217,21 +223,21 @@
         </div>
         <article role="main">
           <section class="tex2jax_ignore mathjax_ignore" id="development">
-<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">#</a></h1>
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this heading">#</a></h1>
 <p>If you’d like to develop <code class="docutils literal notranslate"><span class="pre">gio</span></code>, this page should help you get started.</p>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
 <p>You can install this package with <code class="docutils literal notranslate"><span class="pre">pip</span></code>. The <code class="docutils literal notranslate"><span class="pre">dev</span></code> option will install the packages you need for testing and building the documentation.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install gio[dev]
 </pre></div>
 </div>
 </section>
 <section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h2>
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading">#</a></h2>
 <p>If you’d like to contribute pull requests back to the main <code class="docutils literal notranslate"><span class="pre">gio</span> </code> project, please see <a class="reference external" href="https://github.com/agile-geoscience/gio/blob/main/CONTRIBUTING.md"><code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code></a>.</p>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">#</a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
 <p>You can run the tests (requires <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code>) with</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python run_tests.py
 </pre></div>
@@ -239,7 +245,7 @@
 <p>Most of the tests are <code class="docutils literal notranslate"><span class="pre">doctest</span></code> tests, which are contained in the docstrings of this package’s functions. It is also possible to add test files to the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder in the normal way.</p>
 </section>
 <section id="building-the-package">
-<h2>Building the package<a class="headerlink" href="#building-the-package" title="Permalink to this headline">#</a></h2>
+<h2>Building the package<a class="headerlink" href="#building-the-package" title="Permalink to this heading">#</a></h2>
 <p>This repo uses PEP 518-style packaging. <a class="reference external" href="https://setuptools.pypa.io/en/latest/build_meta.html">Read more about this</a> and <a class="reference external" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">about Python packaging in general</a>.</p>
 <p>Building the project requires <code class="docutils literal notranslate"><span class="pre">build</span></code>, so first:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -m pip install build
@@ -252,7 +258,7 @@
 <p>This builds both <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> and <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files, either of which you can install with <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
 </section>
 <section id="building-the-docs">
-<h2>Building the docs<a class="headerlink" href="#building-the-docs" title="Permalink to this headline">#</a></h2>
+<h2>Building the docs<a class="headerlink" href="#building-the-docs" title="Permalink to this heading">#</a></h2>
 <p>You can build the docs with the following commands:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd docs
 make html
@@ -262,7 +268,7 @@ make html
 <p>There is a continuous integration script to update the docs on published releases.</p>
 </section>
 <section id="continuous-integration">
-<h2>Continuous integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">#</a></h2>
+<h2>Continuous integration<a class="headerlink" href="#continuous-integration" title="Permalink to this heading">#</a></h2>
 <p>This repo has GitHub ‘workflows’ or ‘actions’:</p>
 <ul class="simple">
 <li><p>Push to <code class="docutils literal notranslate"><span class="pre">main</span></code>: Run all tests on all version of Python. This is the <strong>Build and test</strong> workflow.</p></li>
@@ -300,9 +306,9 @@ make html
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                &#169; 2022, Agile Scientific | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a>
+                Copyright &#169; 2022, Agile Scientific
             </div>
-            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and 
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             
@@ -356,6 +362,7 @@ make html
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>

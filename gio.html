@@ -1,17 +1,17 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Development" href="development.html" /><link rel="prev" title="Random grids" href="userguide/Random_grids.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>gio package - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
     
@@ -37,12 +37,14 @@
       }
     }
   }
-</style></head>
+</style><script defer data-domain="code.agilescientific.com" src="https://plausible.io/js/plausible.js"></script></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -162,6 +164,9 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-function">Use the function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
@@ -179,8 +184,8 @@
 <p class="caption" role="heading"><span class="caption-text">Project links</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/gio/">PyPI releases</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio">Code in GitHub</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio/issues">Issue tracker</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio">Code in GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio/issues">Issue tracker</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com/community">Community guidelines</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com">Agile's software</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.agilescientific.com">Agile's website</a></li>
@@ -202,7 +207,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -217,18 +223,18 @@
         </div>
         <article role="main">
           <section id="gio-package">
-<h1>gio package<a class="headerlink" href="#gio-package" title="Permalink to this headline">#</a></h1>
+<h1>gio package<a class="headerlink" href="#gio-package" title="Permalink to this heading">#</a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">#</a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="module-gio.dem">
-<span id="gio-dem-module"></span><h2>gio.dem module<a class="headerlink" href="#module-gio.dem" title="Permalink to this headline">#</a></h2>
+<span id="gio-dem-module"></span><h2>gio.dem module<a class="headerlink" href="#module-gio.dem" title="Permalink to this heading">#</a></h2>
 <p>Read 2D ASCII/binary Surfer grid files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2022 Agile Geoscience (this adaptation)</p>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>Apache 2.0</p>
 </dd>
 </dl>
@@ -237,22 +243,25 @@
 <span class="sig-prename descclassname"><span class="pre">gio.dem.</span></span><span class="sig-name descname"><span class="pre">read_e00_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.dem.read_e00_text" title="Permalink to this definition">#</a></dt>
 <dd><p>Parse a bunch of E00 formatted text and emit a NumPy array.</p>
 </dd></dl>
+
 </section>
 <section id="module-gio.iesx">
-<span id="gio-iesx-module"></span><h2>gio.iesx module<a class="headerlink" href="#module-gio.iesx" title="Permalink to this headline">#</a></h2>
+<span id="gio-iesx-module"></span><h2>gio.iesx module<a class="headerlink" href="#module-gio.iesx" title="Permalink to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.iesx.check_dialect">
 <span class="sig-prename descclassname"><span class="pre">gio.iesx.</span></span><span class="sig-name descname"><span class="pre">check_dialect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.iesx.check_dialect" title="Permalink to this definition">#</a></dt>
 <dd><p>Decide if IESX file is from Petrel or OpendTect.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.iesx.read_iesx_from_petrel">
 <span class="sig-prename descclassname"><span class="pre">gio.iesx.</span></span><span class="sig-name descname"><span class="pre">read_iesx_from_petrel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.iesx.read_iesx_from_petrel" title="Permalink to this definition">#</a></dt>
 <dd><p>Read a Petrel IESX file and create a GeoPandas DataFrame.</p>
 </dd></dl>
+
 </section>
 <section id="module-gio.logo">
-<span id="gio-logo-module"></span><h2>gio.logo module<a class="headerlink" href="#module-gio.logo" title="Permalink to this headline">#</a></h2>
+<span id="gio-logo-module"></span><h2>gio.logo module<a class="headerlink" href="#module-gio.logo" title="Permalink to this heading">#</a></h2>
 <p>Make gio’s logo.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.logo.plot">
@@ -260,32 +269,36 @@
 <dd><p>Plots as a side effect. Pass in a 3d Axes if you want. Pass a filename
 to save the plot.</p>
 </dd></dl>
+
 </section>
 <section id="module-gio.opendtect">
-<span id="gio-opendtect-module"></span><h2>gio.opendtect module<a class="headerlink" href="#module-gio.opendtect" title="Permalink to this headline">#</a></h2>
+<span id="gio-opendtect-module"></span><h2>gio.opendtect module<a class="headerlink" href="#module-gio.opendtect" title="Permalink to this heading">#</a></h2>
 <p>I/O for OpendTect horizon formats.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.df_to_xarray">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">df_to_xarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.df_to_xarray" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert a DataFrame to a DataArray.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.get_meta">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.get_meta" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a string containing only the lines starting with
 the specified comment character. Does not read entire file.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.get_names_from_header">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">get_names_from_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.get_names_from_header" title="Permalink to this definition">#</a></dt>
 <dd><p>Get names from header text.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.read_odt">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">read_odt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usecols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.read_odt" title="Permalink to this definition">#</a></dt>
 <dd><p>Read an OdT horizon file. (Native format, not IESX.)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>names</strong> (<em>list</em>) – <p>The names of the columns in the file. If there’s
 a header, this is not required. If there is no header, the
@@ -334,24 +347,25 @@ it will use that to increment the indices.</p></li>
 will be added as ‘odt_filename’.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
 <dt>Each data column will be a data variable. Inline and</dt><dd><p>crossline — and cdp_x and cdp_y, if present — will be coordinates.</p>
 </dd>
 </dl>
 </p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>xarray.Dataset</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.read_odt_as_df">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">read_odt_as_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usecols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.read_odt_as_df" title="Permalink to this definition">#</a></dt>
 <dd><p>Read an OdT file as a Pandas DataFrame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fname</strong> (<em>str</em>) – Path to file.</p></li>
 <li><p><strong>names</strong> (<em>list</em>) – List of column names.</p></li>
@@ -360,32 +374,35 @@ will be added as ‘odt_filename’.</p></li>
 <li><p><strong>pandas.read_csv.</strong> (<em>kwargs are passed to</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>DataFrame containing the data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>df (pandas.DataFrame)</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.regularize_columns">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">regularize_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snake_case</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.regularize_columns" title="Permalink to this definition">#</a></dt>
 <dd><p>Adjust the column names to use segyio / SEGY-SAK standard names.
 And optionally transform to snake case.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.sense_types">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">sense_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.sense_types" title="Permalink to this definition">#</a></dt>
 <dd><p>Guess the type of some numbers.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.opendtect.to_odt">
 <span class="sig-prename descclassname"><span class="pre">gio.opendtect.</span></span><span class="sig-name descname"><span class="pre">to_odt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_twt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'multiline'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.opendtect.to_odt" title="Permalink to this definition">#</a></dt>
 <dd><p>Write an OdT horizon file. (Native format, not IESX.)</p>
 <p>There is an unhealthy amount of magic in this function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fname</strong> (<em>str</em>) – The name of the file to write.</p></li>
 <li><p><strong>dx</strong> (<em>xarray.Dataset</em>) – The data to write.</p></li>
@@ -402,14 +419,15 @@ by other software.</p></li>
 <li><p><strong>**kwargs</strong> – Additional arguments to pass to <cite>pandas.DataFrame.to_csv</cite>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 <section id="module-gio.random">
-<span id="gio-random-module"></span><h2>gio.random module<a class="headerlink" href="#module-gio.random" title="Permalink to this headline">#</a></h2>
+<span id="gio-random-module"></span><h2>gio.random module<a class="headerlink" href="#module-gio.random" title="Permalink to this heading">#</a></h2>
 <p>Random surfaces.</p>
 <p>The code in this module was substantially adapted from Pierre Vigier’s code at
 <a class="reference external" href="https://github.com/pvigier/perlin-numpy">https://github.com/pvigier/perlin-numpy</a></p>
@@ -420,7 +438,7 @@ by other software.</p></li>
 <p>By Pierre Vigier <a class="reference external" href="https://github.com/pvigier/perlin-numpy">https://github.com/pvigier/perlin-numpy</a>
 Licence: MIT</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> – The shape of the generated array (tuple of two ints).
 This must be a multiple of lacunarity**(octaves-1)*res.</p></li>
@@ -436,23 +454,24 @@ axis (tuple of two ints). Note shape must be a multiple of
 t*t*t*(t*(t*6 - 15) + 10).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A numpy array of fractal noise and of shape shape generated by
 combining several octaves of perlin noise.</p>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – If shape is not a multiple of lacunarity**(octaves-1)*res.</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.random.generate_random_surface">
-<span class="sig-prename descclassname"><span class="pre">gio.random.</span></span><span class="sig-name descname"><span class="pre">generate_random_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">octaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lacunarity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.random.generate_random_surface" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gio.random.</span></span><span class="sig-name descname"><span class="pre">generate_random_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">octaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lacunarity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i,j'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.random.generate_random_surface" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a square grid of <strong>at least</strong> the given size (length of side), with
 the given parameters. Size must be a multiple of lacunarity**(octaves-1)*res
 so the smallest possible size greater than the one provided is used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em><em> or </em><em>tuple</em>) – minimum length of side of the grid.</p></li>
 <li><p><strong>res</strong> (<em>int</em><em> or </em><em>tuple</em>) – number of periods of noise to generate along
@@ -463,22 +482,27 @@ octaves). Default: 2.</p></li>
 <li><p><strong>persistence</strong> (<em>float</em>) – persistence of the noise (amplitude factor between
 octaves). Default: 0.5.</p></li>
 <li><p><strong>random_seed</strong> (<em>int</em>) – random seed.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – name of the resulting array, optional. Default: None.</p></li>
+<li><p><strong>coords</strong> (<em>str</em>) – names of spatial coordinates, separated by commas.
+Default: i and j.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the grid.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>xarray.DataArray</p>
 </dd>
 </dl>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.random.interpolant">
 <span class="sig-prename descclassname"><span class="pre">gio.random.</span></span><span class="sig-name descname"><span class="pre">interpolant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.random.interpolant" title="Permalink to this definition">#</a></dt>
 <dd><p>By Pierre Vigier <a class="reference external" href="https://github.com/pvigier/perlin-numpy">https://github.com/pvigier/perlin-numpy</a>
 Licence: MIT</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.random.perlin_noise">
 <span class="sig-prename descclassname"><span class="pre">gio.random.</span></span><span class="sig-name descname"><span class="pre">perlin_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tileable=(False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">False)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolant=&lt;function</span> <span class="pre">interpolant&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.random.perlin_noise" title="Permalink to this definition">#</a></dt>
@@ -486,7 +510,7 @@ Licence: MIT</p>
 <p>By Pierre Vigier <a class="reference external" href="https://github.com/pvigier/perlin-numpy">https://github.com/pvigier/perlin-numpy</a>
 Licence: MIT</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape</strong> – The shape of the generated array (tuple of two ints).
 This must be a multple of res.</p></li>
@@ -499,32 +523,33 @@ res.</p></li>
 t*t*t*(t*(t*6 - 15) + 10).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A numpy array of shape shape with the generated noise.</p>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – If shape is not a multiple of res.</p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 <section id="module-gio.surfer">
-<span id="gio-surfer-module"></span><h2>gio.surfer module<a class="headerlink" href="#module-gio.surfer" title="Permalink to this headline">#</a></h2>
+<span id="gio-surfer-module"></span><h2>gio.surfer module<a class="headerlink" href="#module-gio.surfer" title="Permalink to this heading">#</a></h2>
 <p>Read 2D ASCII/binary Surfer grid files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2022 Agile Geoscience (this adaptation)</p>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>Apache 2.0</p>
 </dd>
 </dl>
 <p>Adapted from Seequent’s <cite>steno3d_surfer</cite>: <a class="reference external" href="https://pypi.org/project/steno3d_surfer">https://pypi.org/project/steno3d_surfer</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2018 Seequent</p>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>MIT</p>
 </dd>
 </dl>
@@ -551,38 +576,47 @@ SOFTWARE.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.data">
-<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#gio.surfer.GridInfo.data" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#gio.surfer.GridInfo.data" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.fname">
 <span class="sig-name descname"><span class="pre">fname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#gio.surfer.GridInfo.fname" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.to_xarray">
 <span class="sig-name descname"><span class="pre">to_xarray</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gio.surfer.GridInfo.to_xarray" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert to xarray.DataArray. Only (x, y)-orthogonal grids are supported.</p>
 </dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.xmax">
 <span class="sig-name descname"><span class="pre">xmax</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#gio.surfer.GridInfo.xmax" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.xmin">
 <span class="sig-name descname"><span class="pre">xmin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#gio.surfer.GridInfo.xmin" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.ymax">
 <span class="sig-name descname"><span class="pre">ymax</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#gio.surfer.GridInfo.ymax" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gio.surfer.GridInfo.ymin">
 <span class="sig-name descname"><span class="pre">ymin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#gio.surfer.GridInfo.ymin" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.surfer.read_grd">
 <span class="sig-prename descclassname"><span class="pre">gio.surfer.</span></span><span class="sig-name descname"><span class="pre">read_grd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.surfer.read_grd" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.surfer.read_surfer">
 <span class="sig-prename descclassname"><span class="pre">gio.surfer.</span></span><span class="sig-name descname"><span class="pre">read_surfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.surfer.read_surfer" title="Permalink to this definition">#</a></dt>
@@ -590,26 +624,63 @@ SOFTWARE.</p>
 Surfer 6 binary &amp; ASCII files, and Surfer 7 binary files.
 Only (x, y)-orthogonal grids are supported.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – The filename of the Surfer .grd file.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The grid data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>xarray.DataArray</p>
 </dd>
 </dl>
 </dd></dl>
+
+</section>
+<section id="module-gio.xarray">
+<span id="gio-xarray-module"></span><h2>gio.xarray module<a class="headerlink" href="#module-gio.xarray" title="Permalink to this heading">#</a></h2>
+<p>xarray accessor.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="gio.xarray.SurfaceAccessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gio.xarray.</span></span><span class="sig-name descname"><span class="pre">SurfaceAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.xarray.SurfaceAccessor" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gio.xarray.SurfaceAccessor.to_zmap">
+<span class="sig-name descname"><span class="pre">to_zmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'comment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'File</span> <span class="pre">created</span> <span class="pre">by</span> <span class="pre">gio.to_zmap</span> <span class="pre">xarray</span> <span class="pre">accessory'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_per_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-999.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.xarray.SurfaceAccessor.to_zmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Write a DataArray to a ZMAP file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – path to ZMAP file.</p></li>
+<li><p><strong>coords</strong> (<em>list</em><em> or </em><em>None</em>) – list of coordinate names to use for the X and
+Y axes. If None, use the first two dimensions of the DataArray.</p></li>
+<li><p><strong>comment_attr</strong> (<em>str</em><em> or </em><em>None</em>) – name of the DataArray attribute to use
+as a comment in the file. If None, no comment is added.</p></li>
+<li><p><strong>add_comment</strong> (<em>str</em><em> or </em><em>list</em><em> or </em><em>None</em>) – comment to add to the end of any
+comments found in the DataArray. If None, no comment is added.</p></li>
+<li><p><strong>nodes_per_line</strong> (<em>int</em>) – number of values to write per line.</p></li>
+<li><p><strong>field_width</strong> (<em>int</em>) – character width of each value field.</p></li>
+<li><p><strong>precision</strong> (<em>int</em>) – number of decimal places to write.</p></li>
+<li><p><strong>null_value</strong> (<em>float</em>) – value to use for NaN values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-gio.xy_to_grid">
-<span id="gio-xy-to-grid-module"></span><h2>gio.xy_to_grid module<a class="headerlink" href="#module-gio.xy_to_grid" title="Permalink to this headline">#</a></h2>
+<span id="gio-xy-to-grid-module"></span><h2>gio.xy_to_grid module<a class="headerlink" href="#module-gio.xy_to_grid" title="Permalink to this heading">#</a></h2>
 <p>Special case: binning data with only (x, y) coords.</p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2022 Agile Geoscience</p>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>Apache 2.0</p>
 </dd>
 </dl>
@@ -622,6 +693,7 @@ the distance between bin centres.</p>
 <p>Default is nearest-metre precision, which should be
 fine for most seismic surveys.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.xy_to_grid.nearest_neighbours">
 <span class="sig-prename descclassname"><span class="pre">gio.xy_to_grid.</span></span><span class="sig-name descname"><span class="pre">nearest_neighbours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.xy_to_grid.nearest_neighbours" title="Permalink to this definition">#</a></dt>
@@ -631,6 +703,7 @@ nearest neighbour (and its first such neighbour).</p>
 <p>The precision cut-off is needed to deal with floating-point
 imprecision.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.xy_to_grid.parabolic">
 <span class="sig-prename descclassname"><span class="pre">gio.xy_to_grid.</span></span><span class="sig-name descname"><span class="pre">parabolic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.xy_to_grid.parabolic" title="Permalink to this definition">#</a></dt>
@@ -649,6 +722,7 @@ maximum if points 2, 3, and 4 actually defined a parabola.</p>
 </pre></div>
 </div>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.xy_to_grid.rectify">
 <span class="sig-prename descclassname"><span class="pre">gio.xy_to_grid.</span></span><span class="sig-name descname"><span class="pre">rectify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.xy_to_grid.rectify" title="Permalink to this definition">#</a></dt>
@@ -656,12 +730,13 @@ maximum if points 2, 3, and 4 actually defined a parabola.</p>
 (x, y, data). Data can be anything, just ones if
 you only have points to transform.</p>
 </dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="gio.xy_to_grid.xy_to_grid">
 <span class="sig-prename descclassname"><span class="pre">gio.xy_to_grid.</span></span><span class="sig-name descname"><span class="pre">xy_to_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.xy_to_grid.xy_to_grid" title="Permalink to this definition">#</a></dt>
 <dd><p>Bin a bunch of unsorted (x, y) datapoints into a regular grid.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
 <li><p>arr (ndarray): The binned data.</p></li>
 <li><p>(dx, dy): The spacing between bins in the x and y directions.</p></li>
@@ -673,23 +748,98 @@ you only have points to transform.</p>
 </ul>
 </p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
+
 </section>
 <section id="module-gio.zmap">
-<span id="gio-zmap-module"></span><h2>gio.zmap module<a class="headerlink" href="#module-gio.zmap" title="Permalink to this headline">#</a></h2>
+<span id="gio-zmap-module"></span><h2>gio.zmap module<a class="headerlink" href="#module-gio.zmap" title="Permalink to this heading">#</a></h2>
 <p>I/O for ZMAP grid formats.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="gio.zmap.read_zmap">
-<span class="sig-prename descclassname"><span class="pre">gio.zmap.</span></span><span class="sig-name descname"><span class="pre">read_zmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.zmap.read_zmap" title="Permalink to this definition">#</a></dt>
-<dd><p>Read a ZMAP file and return an xarray.DataArray</p>
+<dt class="sig sig-object py" id="gio.zmap.array_to_zmap">
+<span class="sig-prename descclassname"><span class="pre">gio.zmap.</span></span><span class="sig-name descname"><span class="pre">array_to_zmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'File</span> <span class="pre">created</span> <span class="pre">by</span> <span class="pre">gio.array_to_zmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_per_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-999.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Z'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.zmap.array_to_zmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Write a NumPy array as a ZMAP dat file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – path to output file.</p></li>
+<li><p><strong>arr</strong> (<em>np.ndarray</em>) – 2D array to write.</p></li>
+<li><p><strong>extent</strong> (<em>None</em><em> or </em><em>list</em>) – if not None, should be a list of 4 numbers
+representing the extent of the array in real-world coordinates, in
+the order [min_x, max_x, min_y, max_y].</p></li>
+<li><p><strong>comment</strong> (<em>str</em><em> or </em><em>list</em>) – comment to add to the file.</p></li>
+<li><p><strong>nodes_per_line</strong> (<em>int</em>) – number of values to write per line.</p></li>
+<li><p><strong>field_width</strong> (<em>int</em>) – character width of each value field.</p></li>
+<li><p><strong>precision</strong> (<em>int</em>) – number of decimal places to write.</p></li>
+<li><p><strong>null_value</strong> (<em>float</em>) – value to use for NaN values.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – name of the variable in the file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.zmap.dataarray_to_zmap">
+<span class="sig-prename descclassname"><span class="pre">gio.zmap.</span></span><span class="sig-name descname"><span class="pre">dataarray_to_zmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">da</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'comments'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'File</span> <span class="pre">created</span> <span class="pre">by</span> <span class="pre">gio.dataarray_to_zmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes_per_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-999.25</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.zmap.dataarray_to_zmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Write an xarray.DataArray as a ZMAP dat file. For now we assume that dx is
+a DataArray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – path to output file.</p></li>
+<li><p><strong>da</strong> (<em>xarray.DataArray</em>) – 2D array to write.</p></li>
+<li><p><strong>coords</strong> (<em>None</em><em> or </em><em>str</em>) – If coords is None, then the first two coordinates
+are assumed to represent x and y respectively. If this is not the
+case, pass a single string with a comma separating the names of the
+coordinates to use, eg <cite>“UTMx,UTMy”</cite>. Note that the order of the
+coordinates might be different from the order of the dimensions in
+the DataArray (which is often y, x).</p></li>
+<li><p><strong>comment_attr</strong> (<em>str</em><em> or </em><em>None</em>) – the name of the DataArray attribute to use
+as a comment in the file, if any. If None, no comments are passed
+from the DataArray to the file.</p></li>
+<li><p><strong>add_comment</strong> (<em>str</em><em> or </em><em>list</em><em> or </em><em>None</em>) – comment to add to the end of any
+comments found in the DataArray. If None, no comment is added.</p></li>
+<li><p><strong>nodes_per_line</strong> (<em>int</em>) – number of values to write per line.</p></li>
+<li><p><strong>field_width</strong> (<em>int</em>) – character width of each value field.</p></li>
+<li><p><strong>precision</strong> (<em>int</em>) – number of decimal places to write.</p></li>
+<li><p><strong>null_value</strong> (<em>float</em>) – value to use for NaN values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.zmap.read_zmap">
+<span class="sig-prename descclassname"><span class="pre">gio.zmap.</span></span><span class="sig-name descname"><span class="pre">read_zmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'File</span> <span class="pre">read</span> <span class="pre">by</span> <span class="pre">gio.read_zmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gio.zmap.read_zmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Read a ZMAP file and return an xarray.DataArray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<em>str</em>) – path to ZMAP file.</p></li>
+<li><p><strong>add_attrs</strong> (<em>bool</em>) – if True, add the ZMAP file’s metadata as attributes
+on the DataArray.</p></li>
+<li><p><strong>add_comment</strong> (<em>str</em><em> or </em><em>None</em>) – if not None, add this comment to the
+DataArray’s comment attribute (after any found in the ZMAP file).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>xarray.DataArray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-gio">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gio" title="Permalink to this headline">#</a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gio" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -722,9 +872,9 @@ you only have points to transform.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                &#169; 2022, Agile Scientific | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a>
+                Copyright &#169; 2022, Agile Scientific
             </div>
-            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and 
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             
@@ -765,6 +915,7 @@ you only have points to transform.</p>
 <li><a class="reference internal" href="#module-gio.opendtect">gio.opendtect module</a></li>
 <li><a class="reference internal" href="#module-gio.random">gio.random module</a></li>
 <li><a class="reference internal" href="#module-gio.surfer">gio.surfer module</a></li>
+<li><a class="reference internal" href="#module-gio.xarray">gio.xarray module</a></li>
 <li><a class="reference internal" href="#module-gio.xy_to_grid">gio.xy_to_grid module</a></li>
 <li><a class="reference internal" href="#module-gio.zmap">gio.zmap module</a></li>
 <li><a class="reference internal" href="#module-gio">Module contents</a></li>
@@ -782,6 +933,7 @@ you only have points to transform.</p>
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>

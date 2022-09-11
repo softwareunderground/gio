@@ -1,17 +1,17 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Installation" href="installation.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>gio documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
     
@@ -37,12 +37,14 @@
       }
     }
   }
-</style></head>
+</style><script defer data-domain="code.agilescientific.com" src="https://plausible.io/js/plausible.js"></script></head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
@@ -162,6 +164,9 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_Surfer_grids.html">Read surfer grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-function">Use the function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
@@ -179,8 +184,8 @@
 <p class="caption" role="heading"><span class="caption-text">Project links</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/gio/">PyPI releases</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio">Code in GitHub</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/agile-geoscience/gio/issues">Issue tracker</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio">Code in GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/agilescientific/gio/issues">Issue tracker</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com/community">Community guidelines</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://code.agilescientific.com">Agile's software</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.agilescientific.com">Agile's website</a></li>
@@ -202,7 +207,8 @@
           </svg>
           <span>Back to top</span>
         </a>
-        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -217,10 +223,10 @@
         </div>
         <article role="main">
           <div class="noclass docutils container" id="forkongithub">
-<p><a class="reference external" href="https://github.com/agile-geoscience/gio">Fork on GitHub</a></p>
+<p><a class="reference external" href="https://github.com/agilescientific/gio">Fork on GitHub</a></p>
 </div>
 <section id="gio-geo-i-o-for-subsurface-surfaces">
-<h1>gio: Geo I/O for Subsurface Surfaces<a class="headerlink" href="#gio-geo-i-o-for-subsurface-surfaces" title="Permalink to this headline">#</a></h1>
+<h1>gio: Geo I/O for Subsurface Surfaces<a class="headerlink" href="#gio-geo-i-o-for-subsurface-surfaces" title="Permalink to this heading">#</a></h1>
 <blockquote>
 <div><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">gio</span></code> reads and write subsurface data files</div>
@@ -230,7 +236,7 @@
 </div>
 </div></blockquote>
 <section id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">#</a></h2>
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 </div>
 <p>Install <code class="docutils literal notranslate"><span class="pre">gio</span></code> with pip:</p>
@@ -239,7 +245,7 @@
 </div>
 <p>Read a Surfer grid:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gio</span>
-<span class="n">da</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">read_surfer</span><span class="p">(</span><span class="s1">'surface.grd'</span><span class="p">)</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">read_surfer</span><span class="p">(</span><span class="s1">&#39;surface.grd&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">da</span></code> is a two-dimensional <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> object, which is a kind of
@@ -249,7 +255,7 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>).</p>
 </section>
 <section id="user-guide">
-<h2>User guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">#</a></h2>
+<h2>User guide<a class="headerlink" href="#user-guide" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">User guide</span></p>
 <ul>
@@ -270,12 +276,18 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 <li class="toctree-l2"><a class="reference internal" href="userguide/Read_Surfer_grids.html#a-binary-file">A binary file</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html">Read and write ZMAP files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#transform-the-surface">Transform the surface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html#use-the-function">Use the function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 </ul>
 </div>
 </section>
 <section id="api-reference">
-<h2>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">#</a></h2>
+<h2>API reference<a class="headerlink" href="#api-reference" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
@@ -287,6 +299,7 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.opendtect">gio.opendtect module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.random">gio.random module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.surfer">gio.surfer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.xarray">gio.xarray module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.xy_to_grid">gio.xy_to_grid module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio.zmap">gio.zmap module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gio.html#module-gio">Module contents</a></li>
@@ -296,7 +309,7 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 </div>
 </section>
 <section id="other-resources">
-<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">#</a></h2>
+<h2>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Other resources</span></p>
 <ul>
@@ -309,7 +322,7 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 </div>
 </section>
 <section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">#</a></h2>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -339,9 +352,9 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                &#169; 2022, Agile Scientific | <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a>
+                Copyright &#169; 2022, Agile Scientific
             </div>
-            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and 
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
             <a href="https://github.com/pradyunsg/furo">Furo</a>
             
@@ -371,6 +384,7 @@ underlying array, or <code class="docutils literal notranslate"><span class="pre
 </div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>

@@ -52,6 +52,14 @@ gio.surfer module
    :undoc-members:
    :show-inheritance:
 
+gio.xarray module
+-----------------
+
+.. automodule:: gio.xarray
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gio.xy\_to\_grid module
 -----------------------
 

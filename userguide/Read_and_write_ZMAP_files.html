@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="gio package" href="../gio.html" /><link rel="prev" title="Read and write ZMAP files" href="Read_and_write_ZMAP_files.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Random grids" href="Random_grids.html" /><link rel="prev" title="Read surfer grids" href="Read_Surfer_grids.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Random grids - gio documentation</title>
+        <title>Read and write ZMAP files - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -137,7 +137,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -164,10 +164,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Read_OpendTect_horizons.html">Read OpendTect horizons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Read_Surfer_grids.html">Read surfer grids</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Read_and_write_ZMAP_files.html#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Read_and_write_ZMAP_files.html#use-the-function">Use the function</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Random grids</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Read and write ZMAP files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#use-the-function">Use the function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Random_grids.html">Random grids</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
@@ -216,23 +216,78 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section class="tex2jax_ignore mathjax_ignore" id="random-grids">
-<h1>Random grids<a class="headerlink" href="#random-grids" title="Permalink to this heading">#</a></h1>
-<p>Because sometimes you just want some random data.</p>
-<p>This module implements 2D fractal noise, combining one or more octaves of <a class="reference external" href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>.</p>
+          <section id="read-and-write-zmap-files">
+<h1>Read and write ZMAP files<a class="headerlink" href="#read-and-write-zmap-files" title="Permalink to this heading">#</a></h1>
+<p>The venerable ZMAP format looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! Landmark Zmap grid file name:   .DATANSLCU.dat
+! Created/converted by Oasis Montaj, Geosoft Inc.
+@.DATANSLCU.dat, GRID, 3
+20, 1e+30, , 7, 1
+208, 435, -630000.0, 672000.0, 2000000.0, 2621000.0
+0.0, 0.0, 0.0
+@
+      -16481.9570313      -16283.9033203      -16081.5751953
+      -15856.7861328      -15583.7167969      -15255.7343750
+      -14869.3769531      -14426.1513672      -13915.8769531
+</pre></div>
+</div>
+<p>Files often have a the extension <code class="docutils literal notranslate"><span class="pre">.DAT</span></code>. The first two lines shown are comments. The lines between the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> signs give the name of the grid, with some metadata such as null value, precision, and so on.</p>
+<p><code class="docutils literal notranslate"><span class="pre">gio</span></code> wraps the <a class="reference external" href="https://github.com/abduhbm/zmapio"><code class="docutils literal notranslate"><span class="pre">zmapio</span></code></a> library. There are several functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read_zmap()</span></code>: read a ZMAP file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array_to_zmap()</span></code>: write a NumPy array as a ZMAP file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataarray_to_zmap()</span></code>: write an Xarray <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> as a ZMAP file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xarray.DataArray.gio.to_zmap()</span></code>: an Xarray accessor providing another way to save a DataArray as a ZMAP file.</p></li>
+</ul>
+<p>Let’s read some data from a ZMAP file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head ../../data/ZMAP/NStopo.dat
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>! Landmark Zmap grid file name:   .\DATA\NStopo.dat
+! Created/converted by Oasis Montaj, Geosoft Inc.
+@.\DATA\NStopo.dat  ,GRID,  4
+        20,   1.0E+30,       ,     7,       1
+       208,       435,  -630000.0000,   672000.0000,  2000000.0000,  2621000.0000,
+        0.0000,        0.0000,        0.0000,
+@
+         -67.2144775         -67.5697021         -67.1472168         -69.0812378
+         -73.1813660         -74.3084717         -72.7660828         -72.0339966
+         -70.5137329         -68.5551758         -66.1948547         -62.7756653
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gio</span>
 
-<span class="n">g</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">generate_random_surface</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">read_zmap</span><span class="p">(</span><span class="s1">&#39;../../data/ZMAP/NStopo.dat&#39;</span><span class="p">)</span>
 
-<span class="n">g</span>
+<span class="n">z</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f53aac5d130&gt;
+</pre></div>
+</div>
+<img alt="../_images/2417a2b92a309e25659f8426d5981f0bc0e4e3dbd69e1a1edc603feea8812fc2.png" src="../_images/2417a2b92a309e25659f8426d5981f0bc0e4e3dbd69e1a1edc603feea8812fc2.png" />
+</div>
+</div>
+<p>Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span>
 </pre></div>
 </div>
 </div>
@@ -268,6 +323,7 @@
 }
 
 html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
@@ -588,71 +644,121 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (i: 204, j: 204)&gt;
-array([[ 0.        ,  0.01112592,  0.02475455, ...,  0.06705609,
-         0.04385776,  0.021388  ],
-       [-0.00460792,  0.00641189,  0.01967784, ...,  0.05111603,
-         0.02700471,  0.00417019],
-       [-0.00976704,  0.00083846,  0.01340952, ...,  0.03308568,
-         0.00806657, -0.01504791],
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;.\\DATA\\NStopo.dat&#x27; (Y: 208, X: 435)&gt;
+array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
+          656.3284302,   581.6201782],
+       [  -50.7771301,   -43.4010925,   -40.3817444, ...,   626.8185425,
+          587.7715454,   528.4921265],
+       [  -49.3357849,   -47.8291626,   -43.6928101, ...,   472.8615723,
+          492.1585693,   453.5387573],
        ...,
-       [-0.00259363, -0.00802495, -0.01443772, ..., -0.01775824,
-        -0.02640871, -0.03217788],
-       [-0.00422369, -0.00925669, -0.0156544 , ..., -0.00457149,
-        -0.01438403, -0.02118363],
-       [-0.00295641, -0.00785845, -0.01446448, ...,  0.00883746,
-        -0.00159209, -0.00887996]])
+       [  -67.1472168,   -72.3484497,   -78.2303467, ..., -2397.1206055,
+        -2378.3427734, -2362.1647949],
+       [  -67.5697021,   -72.6132202,   -81.2595825, ..., -2409.6945801,
+        -2391.8217773, -2376.5600586],
+       [  -67.2144775,   -74.9806519,   -82.2666016, ..., -2416.8630371,
+        -2398.3891602, -2387.4147949]])
 Coordinates:
-  * i        (i) int64 0 1 2 3 4 5 6 7 8 ... 195 196 197 198 199 200 201 202 203
-  * j        (j) int64 0 1 2 3 4 5 6 7 8 ... 195 196 197 198 199 200 201 202 203
+  * X        (X) float64 -6.3e+05 -6.27e+05 -6.24e+05 ... 6.69e+05 6.72e+05
+  * Y        (Y) float64 2e+06 2.003e+06 2.006e+06 ... 2.618e+06 2.621e+06
 Attributes:
-    source:       gio.random
-    description:  Fractal Perlin noise</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>i</span>: 204</li><li><span class='xr-has-index'>j</span>: 204</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ceed0c0a-f901-402e-a349-3f9b894bef57' class='xr-array-in' type='checkbox' checked><label for='section-ceed0c0a-f901-402e-a349-3f9b894bef57' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.0 0.01113 0.02475 0.04161 ... 0.02115 0.008837 -0.001592 -0.00888</span></div><div class='xr-array-data'><pre>array([[ 0.        ,  0.01112592,  0.02475455, ...,  0.06705609,
-         0.04385776,  0.021388  ],
-       [-0.00460792,  0.00641189,  0.01967784, ...,  0.05111603,
-         0.02700471,  0.00417019],
-       [-0.00976704,  0.00083846,  0.01340952, ...,  0.03308568,
-         0.00806657, -0.01504791],
+    fname:       ../../data/ZMAP/NStopo.dat
+    null_value:  1e+30
+    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-76207c40-d2cb-4948-a5f3-daab1cc7f561' class='xr-array-in' type='checkbox' checked><label for='section-76207c40-d2cb-4948-a5f3-daab1cc7f561' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
+          656.3284302,   581.6201782],
+       [  -50.7771301,   -43.4010925,   -40.3817444, ...,   626.8185425,
+          587.7715454,   528.4921265],
+       [  -49.3357849,   -47.8291626,   -43.6928101, ...,   472.8615723,
+          492.1585693,   453.5387573],
        ...,
-       [-0.00259363, -0.00802495, -0.01443772, ..., -0.01775824,
-        -0.02640871, -0.03217788],
-       [-0.00422369, -0.00925669, -0.0156544 , ..., -0.00457149,
-        -0.01438403, -0.02118363],
-       [-0.00295641, -0.00785845, -0.01446448, ...,  0.00883746,
-        -0.00159209, -0.00887996]])</pre></div></div></li><li class='xr-section-item'><input id='section-9567e983-1d68-4e1d-b615-1e7c6ef45bfe' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9567e983-1d68-4e1d-b615-1e7c6ef45bfe' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>i</span></div><div class='xr-var-dims'>(i)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 199 200 201 202 203</div><input id='attrs-0cf59220-06b9-4fce-956d-be607906761d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0cf59220-06b9-4fce-956d-be607906761d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ebde7cc4-459d-4e5e-a4c7-f310d4b3bd2c' class='xr-var-data-in' type='checkbox'><label for='data-ebde7cc4-459d-4e5e-a4c7-f310d4b3bd2c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 201, 202, 203])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>j</span></div><div class='xr-var-dims'>(j)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 199 200 201 202 203</div><input id='attrs-6c5e779d-f12e-41a0-a318-7f7e27eb5850' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6c5e779d-f12e-41a0-a318-7f7e27eb5850' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bd2d2647-6a93-44f5-aff3-7eee2c9124c7' class='xr-var-data-in' type='checkbox'><label for='data-bd2d2647-6a93-44f5-aff3-7eee2c9124c7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 201, 202, 203])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-766cdc89-86f2-404e-b07d-589122706ab9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-766cdc89-86f2-404e-b07d-589122706ab9' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>source :</span></dt><dd>gio.random</dd><dt><span>description :</span></dt><dd>Fractal Perlin noise</dd></dl></div></li></ul></div></div></div></div>
+       [  -67.1472168,   -72.3484497,   -78.2303467, ..., -2397.1206055,
+        -2378.3427734, -2362.1647949],
+       [  -67.5697021,   -72.6132202,   -81.2595825, ..., -2409.6945801,
+        -2391.8217773, -2376.5600586],
+       [  -67.2144775,   -74.9806519,   -82.2666016, ..., -2416.8630371,
+        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-3f52cfb6-baf3-4775-8dc4-55b4a15240a9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3f52cfb6-baf3-4775-8dc4-55b4a15240a9' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-8ebf1fcf-945a-44e5-8079-231dcacf705a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8ebf1fcf-945a-44e5-8079-231dcacf705a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e90e077-1625-4f56-82e5-372323ac34aa' class='xr-var-data-in' type='checkbox'><label for='data-8e90e077-1625-4f56-82e5-372323ac34aa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-32bd16b6-567c-42f4-a491-b12b553006ee' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-32bd16b6-567c-42f4-a491-b12b553006ee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-64c39230-d27a-41ce-839d-d4d1d37ca233' class='xr-var-data-in' type='checkbox'><label for='data-64c39230-d27a-41ce-839d-d4d1d37ca233' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a596c85a-40b6-452b-ba1e-524f5091898e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a596c85a-40b6-452b-ba1e-524f5091898e' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<p>We can plot this thing:</p>
+<section id="transform-the-surface">
+<h2>Transform the surface<a class="headerlink" href="#transform-the-surface" title="Permalink to this heading">#</a></h2>
+<p>The units are feet; let’s transform them to metres and save a new file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_m</span> <span class="o">=</span> <span class="mf">0.3048</span> <span class="o">*</span> <span class="n">z</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="use-the-xarray-accessory">
+<h1>Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory<a class="headerlink" href="#use-the-xarray-accessory" title="Permalink to this heading">#</a></h1>
+<p>If your surface is held in an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code> then the accessory is the easiest way to save it in ZMAP format.</p>
+<p>To use it, access the <code class="docutils literal notranslate"><span class="pre">to_zmap()</span></code> function in the <code class="docutils literal notranslate"><span class="pre">gio</span></code> accessory. After importing <code class="docutils literal notranslate"><span class="pre">gio</span></code>, the accessory is attached to every instance of a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_m</span><span class="o">.</span><span class="n">gio</span><span class="o">.</span><span class="n">to_zmap</span><span class="p">(</span><span class="s1">&#39;NStopo_m.dat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can take a peek at this file using IPython to see if it looks legit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head ./NStopo_m.dat
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fc4e5108f10&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!File created by gio.to_zmap xarray accessory
+@.\DATA\NStopo.dat, GRID, 6
+12, -999.25, , 3, 1
+208, 435, -630000.0, 672000.0, 2000000.0, 2621000.0
+0.0, 0.0, 0.0
+@
+     -20.487     -20.595     -20.466     -21.056     -22.306     -22.649
+     -22.179     -21.956     -21.493     -20.896     -20.176     -19.134
+     -18.187     -17.888     -17.495     -17.983     -17.928     -17.516
+     -18.176     -21.011     -21.595     -20.317     -19.193     -18.450
 </pre></div>
 </div>
-<img alt="../_images/2180c337af28c99220e9635576562ff47ffa7208f99ee816172ad488510b9128.png" src="../_images/2180c337af28c99220e9635576562ff47ffa7208f99ee816172ad488510b9128.png" />
 </div>
 </div>
-<p>The noise does not have to be isotropic:</p>
+</section>
+<section id="use-the-function">
+<h1>Use the function<a class="headerlink" href="#use-the-function" title="Permalink to this heading">#</a></h1>
+<p>If your surface is a NumPy array, then you can use the <code class="docutils literal notranslate"><span class="pre">array_to_zmap()</span></code> function.</p>
+<p>Note that if you want the ZMAP file to have real-world coordinates, you will need to provide the <code class="docutils literal notranslate"><span class="pre">extent</span></code> as a list or tuple of min X, max X, min Y, max Y. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gio</span><span class="o">.</span><span class="n">generate_random_surface</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">octaves</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">z_m</span><span class="o">.</span><span class="n">data</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">gio</span><span class="o">.</span><span class="n">array_to_zmap</span><span class="p">(</span><span class="s1">&#39;NStopo_m.dat&#39;</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">630000.0</span><span class="p">,</span> <span class="mf">672000.0</span><span class="p">,</span> <span class="mf">2000000.0</span><span class="p">,</span> <span class="mf">2621000.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It should look like the file we got before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head ./NStopo_m.dat
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fafa137b580&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!F
+!i
+!l
+!e
+! 
+!c
+!r
+!e
+!a
+!t
 </pre></div>
 </div>
-<img alt="../_images/b5244dd8b96792d96c685cbb2fddffa370bfecf14fde42856126d6748f224ef4.png" src="../_images/b5244dd8b96792d96c685cbb2fddffa370bfecf14fde42856126d6748f224ef4.png" />
 </div>
 </div>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">size</span></code> and <code class="docutils literal notranslate"><span class="pre">res</span></code> can both be tuples.</p>
-<p>The size will be ‘at least’ the specified size in that dimension: it might have to be larger for the algorithm to work.</p>
 </section>
 
         </article>
@@ -660,23 +766,23 @@ Attributes:
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../gio.html">
+          <a class="next-page" href="Random_grids.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">gio package</div>
+                <div class="title">Random grids</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="Read_and_write_ZMAP_files.html">
+          <a class="prev-page" href="Read_Surfer_grids.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Read and write ZMAP files</div>
+                <div class="title">Read surfer grids</div>
                 
               </div>
             </a>
@@ -707,8 +813,29 @@ Attributes:
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Read and write ZMAP files</a><ul>
+<li><a class="reference internal" href="#transform-the-surface">Transform the surface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#use-the-xarray-accessory">Use the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> accessory</a></li>
+<li><a class="reference internal" href="#use-the-function">Use the function</a></li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

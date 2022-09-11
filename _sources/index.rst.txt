@@ -3,14 +3,14 @@
 .. container:: noclass
    :name: forkongithub
 
-   `Fork on GitHub <https://github.com/agile-geoscience/gio>`_
+   `Fork on GitHub <https://github.com/agilescientific/gio>`_
 
 
 gio: Geo I/O for Subsurface Surfaces
 ====================================
 
     | ``gio`` reads and write subsurface data files
-    
+
     | describing surfaces, grids and horizons.
 
 
@@ -50,6 +50,7 @@ User guide
     installation
     userguide/Read_OpendTect_horizons.ipynb
     userguide/Read_Surfer_grids.ipynb
+    userguide/Read_and_write_ZMAP_files.ipynb
     userguide/Random_grids.ipynb
 
 
@@ -90,8 +91,8 @@ Indices and tables
     :hidden:
 
     PyPI releases <https://pypi.org/project/gio/>
-    Code in GitHub <https://github.com/agile-geoscience/gio>
-    Issue tracker <https://github.com/agile-geoscience/gio/issues>
+    Code in GitHub <https://github.com/agilescientific/gio>
+    Issue tracker <https://github.com/agilescientific/gio/issues>
     Community guidelines <https://code.agilescientific.com/community>
     Agile's software <https://code.agilescientific.com>
     Agile's website <https://www.agilescientific.com>
