@@ -3,6 +3,7 @@ from .xy_to_grid import *
 from .iesx import *
 from .surfer import read_surfer
 from .zmap import *
+from .unmap import unmap
 from .random import *
 from .xarray import SurfaceAccessor
 from .logo import plot
