@@ -1,8 +1,6 @@
 """Test ZMAP reading and writing."""
 from io import StringIO
 
-import pytest
-
 import gio
 
 
