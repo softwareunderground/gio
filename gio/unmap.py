@@ -2,10 +2,10 @@ import warnings
 
 import numpy as np
 from scipy.spatial import cKDTree
-from skimage.color import rgb2hsv, hsv2rgb
 from collections import Counter
-from matplotlib.colors import to_rgb, LinearSegmentedColormap
 from matplotlib import cm
+from matplotlib.colors import hsv_to_rgb, rgb_to_hsv
+from matplotlib.colors import to_rgb, LinearSegmentedColormap
 
 
 def check_arr(arr):
@@ -87,11 +87,11 @@ def remove_hillshade(img):
         The image without the hillshade, and the hillshade as a separate
             RGBA array.
     """
-    hsv_im = rgb2hsv(img)
+    hsv_im = rgb_to_hsv(img)
     val = 1 - hsv_im[..., 2]
     hillshade = val[..., None] * [0, 0, 0, 1]
     hsv_im[..., 2] = 1.0
-    return hsv2rgb(hsv_im), hillshade
+    return hsv_to_rgb(hsv_im), hillshade
 
 
 def check_cmap(cmap, levels=256):
