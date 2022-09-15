@@ -52,6 +52,7 @@ User guide
     userguide/Read_Surfer_grids.ipynb
     userguide/Read_and_write_ZMAP_files.ipynb
     userguide/Random_grids.ipynb
+    userguide/Unmap_data_from_an_image.ipynb
 
 
 API reference

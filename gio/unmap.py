@@ -1,8 +1,9 @@
 import warnings
+from collections import Counter
 
 import numpy as np
 from scipy.spatial import cKDTree
-from collections import Counter
+from scipy.cluster.vq import kmeans
 from matplotlib import cm
 from matplotlib.colors import hsv_to_rgb, rgb_to_hsv
 from matplotlib.colors import to_rgb, LinearSegmentedColormap
@@ -26,7 +27,7 @@ def check_arr(arr):
     h, w, c = arr.shape
     alpha = None
     if c == 1:
-        warnings.warn('Grayscale image cannot be transformed; it is already the data.')
+        warnings.warn('Grayscale image will be scaled and returned.')
         # But we can still scale it.
     elif (c == 0) or (c == 2) or (c >= 5):
         raise ValueError('Array must be a grayscale or RGB(A) image.')
@@ -35,6 +36,7 @@ def check_arr(arr):
         alpha = arr[..., 3]
 
     return arr, alpha
+
 
 def get_background_rgb(arr, background='w'):
     """
@@ -56,8 +58,8 @@ def get_background_rgb(arr, background='w'):
     if background == 'common':
         n_pixels = min(1000, h * w)
         ix = np.random.choice(h * w, size=n_pixels, replace=False)
-        c = Counter(arr.reshape(-1, c)[ix])
-        bg = c.most_common(1)
+        c = Counter(tuple(rgb) for rgb in arr.reshape(-1, c)[ix])
+        bg = c.most_common(1)[0][0]
     elif isinstance(background, str):
         bg = to_rgb(background)
     else:
@@ -94,42 +96,136 @@ def remove_hillshade(img):
     return hsv_to_rgb(hsv_im), hillshade
 
 
-def check_cmap(cmap, levels=256):
+def crop_out(arr, rect, reduce=None, reverse='auto'):
+    """
+    Crop pixels out of a larger image.
+
+    If reduce is a function, it is applied across the short axis.
+    """
+    l, t, r, b = rect
+    assert (r >= l) and (b >= t), "Right and bottom must be greater than left and top respectively; the origin is at the top left of the image."
+
+    r += 1 if r == l else 0
+    b += 1 if t == b else 0
+    pixels = arr[t:b, l:r]
+
+    if r - l < b - t:
+        # Then it is a vertical rectangle.
+        pixels = np.swapaxes(pixels, 0, 1)
+        if reverse == 'auto':
+            reverse = True
+
+    if reduce is not None:
+        pixels = reduce(pixels, axis=0)
+        
+    if reverse:
+        pixels = pixels[::-1]
+
+    return pixels
+
+
+def get_cmap(cmap, arr=None, levels=256, quantize=False):
     """
     Turn whatever we get as a colourmap into a matplotlib cmap.
     
-    Could try adding some options later, possibly as other arguments:
-        - Pass an image URI
-        - Pass a tuple of coordinates to extract the cbar from the main image
-
     Args:
-        cmap: Either a matplotlib cmap, or a NumPy array of colours.
-        levels: Number of colours / value levels desired, default 256.
+        cmap (str or array-like): The colourmap to use. If a string, it must
+            be a matplotlib colourmap name. If an array-like, it must be either
+            a 4-tuple of pixel coordinates, or an Nx3 array of RGB values in
+            the range (0-1). If you pass pixel coordinates, they must be
+            ordered like (left, top, right, bottom), giving the coordinates of
+            the colourmap in the image array `arr` (which you must also pass!).
+        arr (2d array): The image array, if `cmap` is a 4-tuple of pixel
+            coordinates.
+        levels (int): The number of colours you want in the colourmap, or
+            which you count in the colourmap if `quantize` is True. 
+        quantize (bool): Whether to quantize the colourmap to `levels` colours.
+            Set this to true if the colourmap array or pixel lcoations you pass
+            are 'stepped' or contain image noise.
 
     Returns:
-        A matplotlib cmap.
+        A matplotlib colourmap.
     """
     if isinstance(cmap, str):
         try:
-            cmap = cm.get_cmap(cmap)
+            return cm.get_cmap(cmap)
         except ValueError:
             raise ValueError("cmap name not recognized by matplotlib")
+
     else:
         try:
-            cmap = LinearSegmentedColormap.from_list('', cmap, N=levels)
+            cmap = np.array(cmap)
         except TypeError as e:
-            raise TypeError("cmap must be a str (name of a matplotlib cmap) or an array-like of RBG triples.")
+            raise TypeError("cmap must be a str (name of a matplotlib cmap) or an array-like.")
+
+        if (cmap.ndim == 1) and (cmap.size == 4):
+            cmap = crop_out(arr, cmap, reduce=np.mean)
+
+        if quantize:
+            cmap, _ = kmeans(cmap, levels)        
+
+        if (cmap.ndim == 2) and (cmap.shape[1] in [3, 4]):
+            cmap = LinearSegmentedColormap.from_list('', cmap[:, :3], N=levels)
+        else:
+            raise TypeError("If an array-like, cmap must be either a 4-tuple of pixel coordinates "
+                            "in a 1d array-like or a sequence of RGB(A) tuples in a 2d array-like.")
+
     return cmap
+
+
+def normalize(arr, vrange):
+    """
+    Normalize the array to the given range.
+    
+    Args:
+        arr: NumPy array of image data.
+        vrange: The range to normalize to, as a tuple (min, max).
+        
+    Returns:
+        The normalized array.
+    """
+    mi, ma = vrange
+    arr = arr / np.nanmax(arr)
+    return (ma - mi) * arr + mi
+
+
+def is_greyscale(arr, epsilon=1e-6):
+    """
+    Check if the image is greyscale.
+    
+    Args:
+        arr: NumPy array of image data.
+        epsilon: The maximum difference between the R, G and B channels
+            for the image to be considered greyscale.
+            
+    Returns:
+        True if the image is greyscale, False otherwise.
+    """
+    arr = np.squeeze(arr).astype(float)
+
+    if arr.ndim == 2:
+        return True
+    
+    if np.max(arr) > 1:
+        arr /= 255
+    
+    r, g, b, *_ = arr.T
+    reg = np.all(np.abs(r - g) < epsilon)
+    geb = np.all(np.abs(g - b) < epsilon)
+    return reg and geb
 
 
 def unmap(arr,
           cmap,
+          crop=None,
           vrange=(0, 1),
           levels=256,
           nan_colours=None,
           background='w',
           threshold = 0.1,
-          hillshade=False):
+          hillshade=False,
+          quantize=False,
+          ):
     """
     Unmap data, via a colourmap, from an image. Reverse false-colouring.
 
@@ -139,12 +235,15 @@ def unmap(arr,
                 or name of mpl colourbar or if None, just use lightness (say)
                 If get pixels and they're a few wide, then average them along
                 short axis? Again, depends on scatter.
+        crop: If not None, crop the image to the given rectangle.
+            Given as a tuple (left, top, right, bottom).
         vrange: (vmin, vmax) for the colourbar.
         levels: Number of colours / value levels desired, default 256.
         nan_colours: Colours to turn to NaN? Treat essentially like background.
                         Combine these args? 
         background: Give background pixel location so can get this, or can be
-                    'white'/w or 'black'/k, or RGB, or try to sense if 'auto'
+                    'white'/w or 'black'/k, or RGB, or use the most common 
+                    pixel colour with 'common'.
         threshold: 0 is exact match only, 1.732 is maximum distance and admits
                         all points.
         hillshade: Then use HSV
@@ -154,40 +253,36 @@ def unmap(arr,
         removed. Essentially a greyscale image representing the data used to
         make the false colour image.
     """
-    # Check or transform the inputs.
+    if is_greyscale(arr):
+        return normalize(arr, vrange)
+
+    # In future, maybe we also check for perceptually linear colours, and
+    # just pass back the lightness channel if so.
+
+    # In future, we may be able to sense the colourmap, either from an ML
+    # model, or analytically from the image.
+
+    # Check and transform inputs to get codebook.
     arr, alpha = check_arr(arr)
-    cmap = check_cmap(cmap)
-    background = get_background_rgb(arr, background)
     if nan_colours is None:
         nan_colours = np.array([]).reshape(0, 3)
-
-    # Get the colours from the cmap provided.
+    background = get_background_rgb(arr, background)
+    cmap = get_cmap(cmap, arr=arr, levels=levels, quantize=quantize)
     colours = cmap(np.linspace(0, 1, levels))[..., :3]
-    
-    # Add the 'nan' and background colours to make the codebook.
     codebook = np.vstack([colours, nan_colours, background])
 
-    # Make the KD tree.
-    kdtree = cKDTree(codebook)
-    
-    # Remove the hillshade if required.
     if hillshade:
         arr, hill = remove_hillshade(arr)
 
-    # Get the index (ix) of the closest colour to each pixel in px.
+    kdtree = cKDTree(codebook)
     dist, ix = kdtree.query(arr)
-    
-    ix = ix.astype(float)
-    
-    # Clean up anything that was looked up from too far away.
+
+    # Remove anything that was inferred from too far, and background.
+    ix = ix.astype(float)    
     ix[dist >= threshold] = np.nan
-    
-    # Remove the background etc colours.
     ix[ix >= len(colours)] = np.nan
+
+    if crop:
+        ix = crop_out(ix, crop)
     
-    # Scale the image, assuming it goes from 0 to 'whatever'.
-    mi, ma = vrange
-    ix = ix / np.nanmax(ix)
-    ix = (ma - mi) * ix + mi
-    
-    return ix
+    return normalize(ix, vrange)
