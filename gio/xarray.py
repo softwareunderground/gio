@@ -1,13 +1,39 @@
 """
-xarray accessor.
+xarray convenience class and accessor.
 
 Author: Matt Hall
 Email: matt@agilescientific.com
 Licence: Apache 2.0
 """
+from dataclasses import dataclass
+
+import numpy as np
 import xarray as xr
 
 from .zmap import dataarray_to_zmap
+
+
+@dataclass
+class GridInfo:
+    xmin: float  # x-value of lower-left corner
+    ymin: float  # y-value of lower-left corner
+    xmax: float  # x-value of upper-right corner
+    ymax: float  # y-value of upper-right corner
+    data: np.ndarray  # grid of data values, shape=(nrow, ncol)
+    dims: tuple = ('i', 'j')  # names of dimensions
+    source: str = ''
+    fname: str = ''
+
+    def to_xarray(self):
+        """
+        Convert to xarray.DataArray. Only (x, y)-orthogonal grids are supported.
+        """
+        nrow, ncol = self.data.shape
+        return xr.DataArray(self.data,
+                            dims=self.dims,
+                            coords={self.dims[1]: np.linspace(self.xmin, self.xmax, ncol),
+                                    self.dims[0]: np.linspace(self.ymin, self.ymax, nrow)},
+                            attrs={'source': self.source, 'fname': self.fname,})
 
 
 @xr.register_dataarray_accessor("gio")

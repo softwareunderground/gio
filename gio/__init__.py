@@ -3,9 +3,9 @@ from .xy_to_grid import *
 from .iesx import *
 from .surfer import read_surfer
 from .zmap import *
-from .unmap import unmap
+from .unmap import unmap_to_dataarray
 from .random import *
-from .xarray import SurfaceAccessor
+from .xarray import GridInfo, SurfaceAccessor
 from .logo import plot
 
 

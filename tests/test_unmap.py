@@ -1,59 +1,28 @@
-"""Test unmapping data from images."""
-from io import StringIO
+from io import BytesIO
 
-from PIL import Image
+import requests
 import numpy as np
-import matplotlib.cm as cm
+from PIL import Image
 
 import gio
-from gio.unmap import is_greyscale
+
+
+def get_image_from_web(uri):
+    data = requests.get(uri).content
+    img = Image.open(BytesIO(data)).convert('RGB')
+    rgb_im = np.asarray(img)[..., :3] / 255.
+    return rgb_im
 
 
 def test_unmap():
-    """Test the basics.
-    """
-    img = Image.open('data/synthetic/test.png')
-    img_as_arr = np.asarray(img)[..., :3] / 255.
+    # An image from Matteo Niccoli's blog:
+    # https://mycartablog.com/2014/08/24/what-your-brain-does-with-colours-when-you-are-not-looking-part-1/
 
-    # Using a cbar image.
-    cbar = np.asarray(Image.open('data/synthetic/test_cbar.png'))[..., :3] / 255
-    cbar = cbar[7:-7, 7:-7]
-    cbar = cbar[13]  # Middle row of pixels
-    data = gio.unmap(img_as_arr, cmap=cbar, threshold=0.05, vrange=(100, 200), background=(1, 1, 1), levels=256)
-    assert data.shape == (231, 231)
-    assert np.nanmax(data) == 200
-    assert np.nanmean(data) - 150.60721435278933 < 1e-6
-    assert np.any(np.isnan(data))
+    img = get_image_from_web('https://i0.wp.com/mycartablog.com/wp-content/uploads/2014/03/spectrogram_jet.png')
 
-    # Using a matplotlib cmap.
-    data = gio.unmap(img_as_arr, cmap='viridis', threshold=0.05, vrange=(200, 300))
-    assert np.nanmean(data) - 250.6121076492208 < 1e-6
-
-    # Using a NumPy array.
-    viridis_colours = cm.get_cmap('viridis')(np.linspace(0, 1, 24))[..., :3]
-    data = gio.unmap(img_as_arr, cmap=viridis_colours, threshold=0.05, vrange=(200, 300))
-    assert np.nanmean(data) - 250.56328195784667 < 1e-6
-
-
-def is_greyscale():
-    """
-    Test the is_greyscale function.
-    """
-    # 8-bit colour.
-    assert not gio.is_greyscale(rgb = (np.random.random((10, 10, 3)) * 256).astype(int))
-
-    # RGBA colour.
-    assert not is_greyscale(np.random.random((10, 10, 4)))
-
-    # Simple 2D array.
-    assert is_greyscale(np.random.random((10, 10)))
-
-    # One-channel image.
-    gs = np.random.random((10, 10, 1))
-    assert is_greyscale(gs)
-
-    # RBG greyscale.
-    assert is_greyscale(np.dstack([gs, gs, gs]))
-
-    # RGBA greyscale with random A channel.
-    assert is_greyscale(np.dstack([gs, gs, gs, np.random.random((10, 10, 1))]))
+    cmap = (2035, 102, 2079, 1198)   # (left, top, right, bottom)
+    crop = (312, 102, 1954, 1198)
+    vrange = (-156.2, -69.0)
+    data = gio.unmap_to_dataarray(img, cmap=cmap, crop=crop, vrange=vrange)
+    assert data.shape == (1096, 1642)
+    assert np.mean(data) + 133.46107021444217 < 1e-6

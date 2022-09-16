@@ -28,32 +28,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 from struct import unpack
-from dataclasses import dataclass
 import warnings
 
 import numpy as np
 import xarray as xr
 
-
-@dataclass
-class GridInfo:
-    xmin: float  # x-value of lower-left corner
-    ymin: float  # y-value of lower-left corner
-    xmax: float  # x-value of lower-left corner
-    ymax: float  # y-value of lower-left corner
-    data: np.ndarray  # grid of data values, shape=(nrow, ncol)
-    fname: str = '' # The filename
-
-    def to_xarray(self):
-        """
-        Convert to xarray.DataArray. Only (x, y)-orthogonal grids are supported.
-        """
-        nrow, ncol = self.data.shape
-        return xr.DataArray(self.data,
-                            dims=('y', 'x'),
-                            coords={'x': np.linspace(self.xmin, self.xmax, ncol),
-                                    'y': np.linspace(self.ymin, self.ymax, nrow)},
-                            attrs={'source': self.fname,})
+from .xarray import GridInfo
 
 
 def read_surfer(fname):
