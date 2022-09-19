@@ -1,8 +1,14 @@
 # CHANGELOG
 
-### 0.1.7, in progress
+### 0.1.8, in progress
 
-- Fixed [issue #26](https://github.com/agilescientific/gio/issues/26), which garbled string comments in `array_to_zmap()`.
+- Coming soon...
+
+
+### 0.1.7, 19 September 2022
+
+- Fixed [bug issue #26](https://github.com/agilescientific/gio/issues/26), which garbled string comments in `array_to_zmap()`.
+- Implemented [enhancement issue #17](https://github.com/agilescientific/gio/issues/17). Created `gio.unmap_to_dataarray()`, putting the guts of the algorithm into its own library, [`unmap`](https://kwinkunks.github.io/unmap), which is now a dependency of `gio`. The library only produces NumPy arrays, so `gio` adds the `xarray` wrapper and a couple of extra options. 
 
 
 ## 0.1.6, 11 September 2022
