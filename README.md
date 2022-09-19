@@ -42,8 +42,6 @@ da = gio.read_surfer(fname)
 da.plot()
 ```
 
-There are currently no output functions; coming soon!
-
 
 ## Documentation
 
