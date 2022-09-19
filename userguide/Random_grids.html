@@ -3,12 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="gio package" href="../gio.html" /><link rel="prev" title="Read and write ZMAP files" href="Read_and_write_ZMAP_files.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Unmap data from an image" href="Unmap_data_from_an_image.html" /><link rel="prev" title="Read and write ZMAP files" href="Read_and_write_ZMAP_files.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
         <title>Random grids - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -166,6 +166,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Read_Surfer_grids.html">Read surfer grids</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Random grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Unmap_data_from_an_image.html">Unmap data from an image</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
@@ -278,7 +279,7 @@ body.vscode-dark {
 }
 
 .xr-wrap {
-  display: block !important;
+  display: block;
   min-width: 300px;
   max-width: 700px;
 }
@@ -587,37 +588,36 @@ dl.xr-attrs {
   fill: currentColor;
 }
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (i: 204, j: 204)&gt;
-array([[ 0.        ,  0.01112592,  0.02475455, ...,  0.06705609,
-         0.04385776,  0.021388  ],
-       [-0.00460792,  0.00641189,  0.01967784, ...,  0.05111603,
-         0.02700471,  0.00417019],
-       [-0.00976704,  0.00083846,  0.01340952, ...,  0.03308568,
-         0.00806657, -0.01504791],
+array([[ 0.        , -0.05736413, -0.11728367, ..., -0.11920205,
+        -0.08226758, -0.04223049],
+       [ 0.01317427, -0.04415499, -0.10391634, ..., -0.1535234 ,
+        -0.11710962, -0.07728829],
+       [ 0.0252488 , -0.03198195, -0.09153055, ..., -0.18582673,
+        -0.14969093, -0.10998765],
        ...,
-       [-0.00259363, -0.00802495, -0.01443772, ..., -0.01775824,
-        -0.02640871, -0.03217788],
-       [-0.00422369, -0.00925669, -0.0156544 , ..., -0.00457149,
-        -0.01438403, -0.02118363],
-       [-0.00295641, -0.00785845, -0.01446448, ...,  0.00883746,
-        -0.00159209, -0.00887996]])
+       [ 0.05144513,  0.04374787,  0.03244042, ...,  0.06511937,
+         0.06545176,  0.06280169],
+       [ 0.03661664,  0.02913997,  0.01798883, ...,  0.04790077,
+         0.04768927,  0.04426351],
+       [ 0.01900629,  0.01164235,  0.00067529, ...,  0.0296427 ,
+         0.0290597 ,  0.02524733]])
 Coordinates:
   * i        (i) int64 0 1 2 3 4 5 6 7 8 ... 195 196 197 198 199 200 201 202 203
   * j        (j) int64 0 1 2 3 4 5 6 7 8 ... 195 196 197 198 199 200 201 202 203
 Attributes:
-    source:       gio.random
-    description:  Fractal Perlin noise</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>i</span>: 204</li><li><span class='xr-has-index'>j</span>: 204</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ceed0c0a-f901-402e-a349-3f9b894bef57' class='xr-array-in' type='checkbox' checked><label for='section-ceed0c0a-f901-402e-a349-3f9b894bef57' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.0 0.01113 0.02475 0.04161 ... 0.02115 0.008837 -0.001592 -0.00888</span></div><div class='xr-array-data'><pre>array([[ 0.        ,  0.01112592,  0.02475455, ...,  0.06705609,
-         0.04385776,  0.021388  ],
-       [-0.00460792,  0.00641189,  0.01967784, ...,  0.05111603,
-         0.02700471,  0.00417019],
-       [-0.00976704,  0.00083846,  0.01340952, ...,  0.03308568,
-         0.00806657, -0.01504791],
+    source:   gio.random</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>i</span>: 204</li><li><span class='xr-has-index'>j</span>: 204</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-0add8791-a385-4ce1-b524-83db7ce8a734' class='xr-array-in' type='checkbox' checked><label for='section-0add8791-a385-4ce1-b524-83db7ce8a734' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.0 -0.05736 -0.1173 -0.18 -0.2441 ... 0.02705 0.02964 0.02906 0.02525</span></div><div class='xr-array-data'><pre>array([[ 0.        , -0.05736413, -0.11728367, ..., -0.11920205,
+        -0.08226758, -0.04223049],
+       [ 0.01317427, -0.04415499, -0.10391634, ..., -0.1535234 ,
+        -0.11710962, -0.07728829],
+       [ 0.0252488 , -0.03198195, -0.09153055, ..., -0.18582673,
+        -0.14969093, -0.10998765],
        ...,
-       [-0.00259363, -0.00802495, -0.01443772, ..., -0.01775824,
-        -0.02640871, -0.03217788],
-       [-0.00422369, -0.00925669, -0.0156544 , ..., -0.00457149,
-        -0.01438403, -0.02118363],
-       [-0.00295641, -0.00785845, -0.01446448, ...,  0.00883746,
-        -0.00159209, -0.00887996]])</pre></div></div></li><li class='xr-section-item'><input id='section-9567e983-1d68-4e1d-b615-1e7c6ef45bfe' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9567e983-1d68-4e1d-b615-1e7c6ef45bfe' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>i</span></div><div class='xr-var-dims'>(i)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 199 200 201 202 203</div><input id='attrs-0cf59220-06b9-4fce-956d-be607906761d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0cf59220-06b9-4fce-956d-be607906761d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ebde7cc4-459d-4e5e-a4c7-f310d4b3bd2c' class='xr-var-data-in' type='checkbox'><label for='data-ebde7cc4-459d-4e5e-a4c7-f310d4b3bd2c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 201, 202, 203])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>j</span></div><div class='xr-var-dims'>(j)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 199 200 201 202 203</div><input id='attrs-6c5e779d-f12e-41a0-a318-7f7e27eb5850' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6c5e779d-f12e-41a0-a318-7f7e27eb5850' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bd2d2647-6a93-44f5-aff3-7eee2c9124c7' class='xr-var-data-in' type='checkbox'><label for='data-bd2d2647-6a93-44f5-aff3-7eee2c9124c7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 201, 202, 203])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-766cdc89-86f2-404e-b07d-589122706ab9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-766cdc89-86f2-404e-b07d-589122706ab9' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>source :</span></dt><dd>gio.random</dd><dt><span>description :</span></dt><dd>Fractal Perlin noise</dd></dl></div></li></ul></div></div></div></div>
+       [ 0.05144513,  0.04374787,  0.03244042, ...,  0.06511937,
+         0.06545176,  0.06280169],
+       [ 0.03661664,  0.02913997,  0.01798883, ...,  0.04790077,
+         0.04768927,  0.04426351],
+       [ 0.01900629,  0.01164235,  0.00067529, ...,  0.0296427 ,
+         0.0290597 ,  0.02524733]])</pre></div></div></li><li class='xr-section-item'><input id='section-9ad3e7b2-c74d-41bb-adcc-fa238499f408' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9ad3e7b2-c74d-41bb-adcc-fa238499f408' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>i</span></div><div class='xr-var-dims'>(i)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 199 200 201 202 203</div><input id='attrs-590a334f-780f-49c3-a646-5eea9a5b97a5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-590a334f-780f-49c3-a646-5eea9a5b97a5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-86565c5e-8d7f-4d3d-883d-9b53ee7a40dc' class='xr-var-data-in' type='checkbox'><label for='data-86565c5e-8d7f-4d3d-883d-9b53ee7a40dc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 201, 202, 203])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>j</span></div><div class='xr-var-dims'>(j)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 4 5 ... 199 200 201 202 203</div><input id='attrs-aaa337b0-08a2-40a1-952e-79a01140e1b8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-aaa337b0-08a2-40a1-952e-79a01140e1b8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-32fe9d3c-bf18-4dc9-853e-4834b8d50d65' class='xr-var-data-in' type='checkbox'><label for='data-32fe9d3c-bf18-4dc9-853e-4834b8d50d65' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0,   1,   2, ..., 201, 202, 203])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c89bb930-2cbe-4884-8971-0b2763e8bd86' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c89bb930-2cbe-4884-8971-0b2763e8bd86' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>source :</span></dt><dd>gio.random</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>We can plot this thing:</p>
 <div class="cell docutils container">
@@ -627,10 +627,10 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fc4e5108f10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f3114fe9700&gt;
 </pre></div>
 </div>
-<img alt="../_images/2180c337af28c99220e9635576562ff47ffa7208f99ee816172ad488510b9128.png" src="../_images/2180c337af28c99220e9635576562ff47ffa7208f99ee816172ad488510b9128.png" />
+<img alt="../_images/206eac4544004a4e4811e13bb6f73ae2e64e9f2c4a35283f19dafe27164bb2c8.png" src="../_images/206eac4544004a4e4811e13bb6f73ae2e64e9f2c4a35283f19dafe27164bb2c8.png" />
 </div>
 </div>
 <p>The noise does not have to be isotropic:</p>
@@ -643,10 +643,10 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fafa137b580&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f31104a16d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/b5244dd8b96792d96c685cbb2fddffa370bfecf14fde42856126d6748f224ef4.png" src="../_images/b5244dd8b96792d96c685cbb2fddffa370bfecf14fde42856126d6748f224ef4.png" />
+<img alt="../_images/06c58ba264e1bdc8dca9dc561d9d624997772add6692eaa04f6db39bd28d647d.png" src="../_images/06c58ba264e1bdc8dca9dc561d9d624997772add6692eaa04f6db39bd28d647d.png" />
 </div>
 </div>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">size</span></code> and <code class="docutils literal notranslate"><span class="pre">res</span></code> can both be tuples.</p>
@@ -658,17 +658,17 @@ Attributes:
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../gio.html">
+          <a class="next-page" href="Unmap_data_from_an_image.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">gio package</div>
+                <div class="title">Unmap data from an image</div>
               </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
           <a class="prev-page" href="Read_and_write_ZMAP_files.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>

@@ -52,6 +52,14 @@ gio.surfer module
    :undoc-members:
    :show-inheritance:
 
+gio.unmap module
+----------------
+
+.. automodule:: gio.unmap
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gio.xarray module
 -----------------
 

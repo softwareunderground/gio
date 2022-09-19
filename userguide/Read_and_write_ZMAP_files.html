@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Random grids" href="Random_grids.html" /><link rel="prev" title="Read surfer grids" href="Read_Surfer_grids.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
         <title>Read and write ZMAP files - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -166,6 +166,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Read_Surfer_grids.html">Read surfer grids</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Read and write ZMAP files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Random_grids.html">Random grids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Unmap_data_from_an_image.html">Unmap data from an image</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
@@ -276,10 +277,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7feeb0a680d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f9df010a160&gt;
 </pre></div>
 </div>
-<img alt="../_images/2417a2b92a309e25659f8426d5981f0bc0e4e3dbd69e1a1edc603feea8812fc2.png" src="../_images/2417a2b92a309e25659f8426d5981f0bc0e4e3dbd69e1a1edc603feea8812fc2.png" />
+<img alt="../_images/63e446d785ce4531a49592163f4c7916c60cefc04f41199c8b32130717bf8774.png" src="../_images/63e446d785ce4531a49592163f4c7916c60cefc04f41199c8b32130717bf8774.png" />
 </div>
 </div>
 <p>Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object too:</p>
@@ -662,7 +663,7 @@ Coordinates:
 Attributes:
     fname:       ../../data/ZMAP/NStopo.dat
     null_value:  1e+30
-    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-03c68fc8-764c-4a06-831c-92c3fbde05f5' class='xr-array-in' type='checkbox' checked><label for='section-03c68fc8-764c-4a06-831c-92c3fbde05f5' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
+    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ac4390ee-7de1-4720-b7fd-3462059d0506' class='xr-array-in' type='checkbox' checked><label for='section-ac4390ee-7de1-4720-b7fd-3462059d0506' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
           656.3284302,   581.6201782],
        [  -50.7771301,   -43.4010925,   -40.3817444, ...,   626.8185425,
           587.7715454,   528.4921265],
@@ -674,7 +675,7 @@ Attributes:
        [  -67.5697021,   -72.6132202,   -81.2595825, ..., -2409.6945801,
         -2391.8217773, -2376.5600586],
        [  -67.2144775,   -74.9806519,   -82.2666016, ..., -2416.8630371,
-        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-e9c34887-1a9e-4164-93b9-b3ae720e4b63' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e9c34887-1a9e-4164-93b9-b3ae720e4b63' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-60fd871d-d5c5-4edc-80b4-d30939baa7cc' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-60fd871d-d5c5-4edc-80b4-d30939baa7cc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ffa70a25-73a0-4c19-af37-6b90aa7d82b2' class='xr-var-data-in' type='checkbox'><label for='data-ffa70a25-73a0-4c19-af37-6b90aa7d82b2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-ca8c1987-1e88-44de-9538-d1462ecfa72a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ca8c1987-1e88-44de-9538-d1462ecfa72a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-446ee362-b8f2-4128-a105-2b3b80f01c14' class='xr-var-data-in' type='checkbox'><label for='data-446ee362-b8f2-4128-a105-2b3b80f01c14' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-2b295deb-1b1c-4f12-bc89-e3978c4f3db9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-2b295deb-1b1c-4f12-bc89-e3978c4f3db9' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
+        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-0534abab-0b91-49be-a77a-51b76d3c077d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0534abab-0b91-49be-a77a-51b76d3c077d' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-443f4cc5-dddd-4952-a399-0381c9881493' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-443f4cc5-dddd-4952-a399-0381c9881493' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-adc25842-6024-4852-b2ce-8ac1c88c417e' class='xr-var-data-in' type='checkbox'><label for='data-adc25842-6024-4852-b2ce-8ac1c88c417e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-ced26e18-adee-4944-a228-3895656e7a23' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ced26e18-adee-4944-a228-3895656e7a23' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-51eb1048-fff2-4654-a0ab-386ad4ee81e3' class='xr-var-data-in' type='checkbox'><label for='data-51eb1048-fff2-4654-a0ab-386ad4ee81e3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-75fcbc57-0467-4c38-b7df-a7690d31ba48' class='xr-section-summary-in' type='checkbox'  checked><label for='section-75fcbc57-0467-4c38-b7df-a7690d31ba48' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <section id="transform-the-surface">
 <h2>Transform the surface<a class="headerlink" href="#transform-the-surface" title="Permalink to this heading">#</a></h2>
@@ -742,16 +743,16 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!F
-!i
-!l
-!e
-! 
-!c
-!r
-!e
-!a
-!t
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!File created by gio.array_to_zmap
+@Z, GRID, 6
+12, -999.25, , 3, 1
+208, 435, -630000.0, 672000.0, 2000000.0, 2621000.0
+0.0, 0.0, 0.0
+@
+     -20.487     -20.595     -20.466     -21.056     -22.306     -22.649
+     -22.179     -21.956     -21.493     -20.896     -20.176     -19.134
+     -18.187     -17.888     -17.495     -17.983     -17.928     -17.516
+     -18.176     -21.011     -21.595     -20.317     -19.193     -18.450
 </pre></div>
 </div>
 </div>
@@ -771,10 +772,10 @@ Attributes:
                 </div>
                 <div class="title">Random grids</div>
               </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
           <a class="prev-page" href="Read_Surfer_grids.html">
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
@@ -817,7 +818,7 @@ Attributes:
       <div class="toc-sticky toc-scroll">
         <div class="toc-title-container">
           <span class="toc-title">
-            Contents
+            On this page
           </span>
         </div>
         <div class="toc-tree-container">
