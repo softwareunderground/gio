@@ -5,6 +5,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 write_to = "gio/_version.py"
 
+[tool.setuptools.packages.find]
+where = ["."]
+
 [project]
 name = "gio"
 dynamic = ["version"]
@@ -13,7 +16,7 @@ authors = [{ name="Agile Scientific", email="hello@agilescientific.com" },]
 description = "Create xarray.DataArrays from various subsurface data formats."
 license = {file = "LICENSE"}
 readme = "README.md"
-keywords = ["machine learning", "data science", "quality assurance"]
+keywords = ["data loading", "data management", "geoscience", "geospatial"]
 classifiers = [
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Information Analysis",
@@ -35,7 +38,6 @@ dependencies = [
     "zmapio",
     "unmap"
 ]
-
 
 [project.optional-dependencies]
 geopandas = [
