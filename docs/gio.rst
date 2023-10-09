@@ -4,10 +4,18 @@ gio package
 Submodules
 ----------
 
-gio.dem module
---------------
+gio.closure module
+------------------
 
-.. automodule:: gio.dem
+.. automodule:: gio.closure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gio.esri module
+---------------
+
+.. automodule:: gio.esri
    :members:
    :undoc-members:
    :show-inheritance:
@@ -48,6 +56,30 @@ gio.surfer module
 -----------------
 
 .. automodule:: gio.surfer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gio.unmap module
+----------------
+
+.. automodule:: gio.unmap
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gio.usgs module
+---------------
+
+.. automodule:: gio.usgs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gio.xarray module
+-----------------
+
+.. automodule:: gio.xarray
    :members:
    :undoc-members:
    :show-inheritance:

@@ -53,6 +53,7 @@ User guide
     userguide/Read_and_write_ZMAP_files.ipynb
     userguide/Random_grids.ipynb
     userguide/Unmap_data_from_an_image.ipynb
+    userguide/Find_closures.ipynb
 
 
 API reference
