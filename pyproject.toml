@@ -1,12 +1,72 @@
 [build-system]
-requires = [
-    "setuptools>=48",
-    "setuptools_scm[toml] >= 4, <6",
-    "setuptools_scm_git_archive",
-    "wheel >= 0.29.0",
-]
+requires = ["setuptools>=68", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 write_to = "gio/_version.py"
-git_describe_command = "git describe --dirty --tags --long --match v* --first-parent"
+
+[project]
+name = "gio"
+dynamic = ["version"]
+requires-python = ">=3.8"
+authors = [{ name="Agile Scientific", email="hello@agilescientific.com" },]
+description = "Create xarray.DataArrays from various subsurface data formats."
+license = {file = "LICENSE"}
+readme = "README.md"
+keywords = ["machine learning", "data science", "quality assurance"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Development Status :: 4 - Beta",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "scipy",
+    "xarray",
+    "matplotlib",
+    "shapely",
+    "zmapio",
+    "unmap"
+]
+
+
+[project.optional-dependencies]
+geopandas = [
+    "geopandas",
+]
+dev = [
+    "build",
+    "pytest",
+    "coverage[toml]",
+    "pytest-cov",
+    "sphinx",
+    "sphinxcontrib-apidoc",
+    "sphinx_copybutton",
+    "furo",
+    "myst_nb",
+    "jupyter",
+    "requests",
+    "geopandas",
+]
+
+[project.urls]
+"documentation" = "https://code.agilescientific.com/gio/"
+"repository" = "https://github.com/agilescientific/gio"
+
+[tool.pytest.ini_options]
+# pytest configuration: http://doc.pytest.org/en/latest/customize.html
+addopts = "--ignore=docs --cov=gio"
+
+[tool.coverage.run]
+# coverage configuration: https://coverage.readthedocs.io/
+omit = [
+    "gio/__init__.py",
+    "gio/_version.py",
+]
