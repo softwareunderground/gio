@@ -4,6 +4,7 @@ from .iesx import *
 from .surfer import read_surfer
 from .zmap import *
 from .unmap import unmap_to_dataarray
+from .closure import find_closures
 from .random import *
 from .xarray import GridInfo, SurfaceAccessor
 from .logo import plot
