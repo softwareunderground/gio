@@ -41,7 +41,7 @@ def plot(ax=None, fname=None):
 
     if fname is not None:
         plt.savefig(fname, dpi=200, bbox_inches='tight')
-
-    plt.show()
+    else:
+        plt.show()
 
     return ax

@@ -84,7 +84,7 @@ def get_intervals(x):
     From an unsorted and possibly sparse collection
     of 1D coordinates, compute the number of bins and
     the distance between bin centres.
-    
+
     Default is nearest-metre precision, which should be
     fine for most seismic surveys.
     """
@@ -139,7 +139,6 @@ def xy_to_grid(x, y, data, compute_array=False):
 
     Returns:
         tuple:
-
             - arr (ndarray): The binned data.
             - (dx, dy): The spacing between bins in the x and y directions.
             - (addx, addy): The destination of each data point into the grid;
@@ -147,7 +146,7 @@ def xy_to_grid(x, y, data, compute_array=False):
     """
     # Create shapely points.
     X = np.vstack([x, y, data]).T
-    
+
     # Get nearest neighbour and rectify.
     v = nearest_neighbours(x, y)
     p = rectify(X, v)
@@ -156,10 +155,10 @@ def xy_to_grid(x, y, data, compute_array=False):
 
     Nx, dx = get_intervals(x_new)
     Ny, dy = get_intervals(y_new)
-    
+
     xedge = np.linspace(np.min(x_new) - dx / 2, np.max(x_new) + dx / 2, Nx + 1)
     yedge = np.linspace(np.min(y_new) - dy / 2, np.max(y_new) + dy / 2, Ny + 1)
-    
+
     assert np.all(data > 0), "Data are not strictly positive; see docs."
 
     # Don't strictly need to do this if we don't want the array.

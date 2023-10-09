@@ -1,7 +1,7 @@
 """
 Read E00 format DEM (digital elevation model) files.
 
-THIS IS A WORK IN PROGRESS.  IT DOES NOT WORK YET.
+THIS IS A WORK IN PROGRESS. IT DOES NOT WORK YET.
 
 :copyright: 2022 Agile Geoscience
 :license: Apache 2.0
