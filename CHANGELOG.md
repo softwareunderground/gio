@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## 0.2.0, October 2023
+## 0.2.0, 10 October 2023
 
-- Moving to more conventional semantic versioning.
-- Added `gio.find_closures()` to automatically find closing contours in a grid. Also added short notebook about it to the docs.
+- Added `gio.find_closures()` to automatically find closing contours in a grid. Also added short notebook about it to the docs. Many thanks to Rob Gooder for hugely improving this algorithm.
 - Development note: switched to PEP621-style build system, using only `pyproject.toml`.
+- Now also building on and supporting Python 3.11.
+- Moving to more conventional semantic versioning.
 
 
 ## 0.1.7, 19 September 2022
