@@ -2,15 +2,14 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Random grids" href="Random_grids.html" /><link rel="prev" title="Read surfer grids" href="Read_Surfer_grids.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
         <title>Read and write ZMAP files - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     
@@ -154,7 +153,7 @@
   
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -167,6 +166,7 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Read and write ZMAP files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Random_grids.html">Random grids</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Unmap_data_from_an_image.html">Unmap data from an image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Find_closures.html">Find closures</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul>
@@ -207,7 +207,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -247,7 +248,7 @@
 <p>Let’s read some data from a ZMAP file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head ../../data/ZMAP/NStopo.dat
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>../../data/ZMAP/NStopo.dat
 </pre></div>
 </div>
 </div>
@@ -277,10 +278,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f9df010a160&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f67a59145e0&gt;
 </pre></div>
 </div>
-<img alt="../_images/63e446d785ce4531a49592163f4c7916c60cefc04f41199c8b32130717bf8774.png" src="../_images/63e446d785ce4531a49592163f4c7916c60cefc04f41199c8b32130717bf8774.png" />
+<img alt="../_images/75bf8db61e315f6fe1b20ac1e86fdc2979e27f2bddace1039a801def3dfc65ca.png" src="../_images/75bf8db61e315f6fe1b20ac1e86fdc2979e27f2bddace1039a801def3dfc65ca.png" />
 </div>
 </div>
 <p>Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> object too:</p>
@@ -552,6 +553,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -573,14 +579,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -590,13 +598,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -634,7 +645,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -663,7 +675,7 @@ Coordinates:
 Attributes:
     fname:       ../../data/ZMAP/NStopo.dat
     null_value:  1e+30
-    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-ac4390ee-7de1-4720-b7fd-3462059d0506' class='xr-array-in' type='checkbox' checked><label for='section-ac4390ee-7de1-4720-b7fd-3462059d0506' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
+    comment:     [&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; C...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'.\DATA\NStopo.dat'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>Y</span>: 208</li><li><span class='xr-has-index'>X</span>: 435</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-bec20aca-b3a7-46b8-8e46-7925fb0d2d05' class='xr-array-in' type='checkbox' checked><label for='section-bec20aca-b3a7-46b8-8e46-7925fb0d2d05' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-50.14 -43.8 -39.55 -42.45 ... -2.417e+03 -2.398e+03 -2.387e+03</span></div><div class='xr-array-data'><pre>array([[  -50.138916 ,   -43.8048401,   -39.550293 , ...,   702.7687378,
           656.3284302,   581.6201782],
        [  -50.7771301,   -43.4010925,   -40.3817444, ...,   626.8185425,
           587.7715454,   528.4921265],
@@ -675,7 +687,17 @@ Attributes:
        [  -67.5697021,   -72.6132202,   -81.2595825, ..., -2409.6945801,
         -2391.8217773, -2376.5600586],
        [  -67.2144775,   -74.9806519,   -82.2666016, ..., -2416.8630371,
-        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-0534abab-0b91-49be-a77a-51b76d3c077d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0534abab-0b91-49be-a77a-51b76d3c077d' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-443f4cc5-dddd-4952-a399-0381c9881493' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-443f4cc5-dddd-4952-a399-0381c9881493' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-adc25842-6024-4852-b2ce-8ac1c88c417e' class='xr-var-data-in' type='checkbox'><label for='data-adc25842-6024-4852-b2ce-8ac1c88c417e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-ced26e18-adee-4944-a228-3895656e7a23' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ced26e18-adee-4944-a228-3895656e7a23' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-51eb1048-fff2-4654-a0ab-386ad4ee81e3' class='xr-var-data-in' type='checkbox'><label for='data-51eb1048-fff2-4654-a0ab-386ad4ee81e3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-75fcbc57-0467-4c38-b7df-a7690d31ba48' class='xr-section-summary-in' type='checkbox'  checked><label for='section-75fcbc57-0467-4c38-b7df-a7690d31ba48' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
+        -2398.3891602, -2387.4147949]])</pre></div></div></li><li class='xr-section-item'><input id='section-fee5e1b1-0610-45ac-ac07-669bd36c825d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fee5e1b1-0610-45ac-ac07-669bd36c825d' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>X</span></div><div class='xr-var-dims'>(X)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-6.3e+05 -6.27e+05 ... 6.72e+05</div><input id='attrs-91e5c1f6-8c60-4989-ba99-5cc7d532e5d3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-91e5c1f6-8c60-4989-ba99-5cc7d532e5d3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0f9d9647-1489-40e2-9b5f-88bb0d1dd58d' class='xr-var-data-in' type='checkbox'><label for='data-0f9d9647-1489-40e2-9b5f-88bb0d1dd58d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-630000., -627000., -624000., ...,  666000.,  669000.,  672000.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Y</span></div><div class='xr-var-dims'>(Y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2e+06 2.003e+06 ... 2.621e+06</div><input id='attrs-c9fc1798-400a-4247-9ca8-112f2a10e97b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c9fc1798-400a-4247-9ca8-112f2a10e97b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ff4e4d8c-a0ee-4397-897b-b50683f729ec' class='xr-var-data-in' type='checkbox'><label for='data-ff4e4d8c-a0ee-4397-897b-b50683f729ec' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2000000., 2003000., 2006000., ..., 2615000., 2618000., 2621000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0134b5d4-40d5-404d-917d-a01d581c9864' class='xr-section-summary-in' type='checkbox'  ><label for='section-0134b5d4-40d5-404d-917d-a01d581c9864' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>X</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-b606d5a5-2969-4632-ba8f-ae47ef2de8df' class='xr-index-data-in' type='checkbox'/><label for='index-b606d5a5-2969-4632-ba8f-ae47ef2de8df' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-630000.0, -627000.0, -624000.0, -621000.0, -618000.0, -615000.0,
+       -612000.0, -609000.0, -606000.0, -603000.0,
+       ...
+        645000.0,  648000.0,  651000.0,  654000.0,  657000.0,  660000.0,
+        663000.0,  666000.0,  669000.0,  672000.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;X&#x27;, length=435))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>Y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-481b608f-d0f6-4452-9bbc-332395c0eb21' class='xr-index-data-in' type='checkbox'/><label for='index-481b608f-d0f6-4452-9bbc-332395c0eb21' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([2000000.0, 2003000.0, 2006000.0, 2009000.0, 2012000.0, 2015000.0,
+       2018000.0, 2021000.0, 2024000.0, 2027000.0,
+       ...
+       2594000.0, 2597000.0, 2600000.0, 2603000.0, 2606000.0, 2609000.0,
+       2612000.0, 2615000.0, 2618000.0, 2621000.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;Y&#x27;, length=208))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-bcf37e88-73da-4676-a068-a9d2fc7d7a9f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-bcf37e88-73da-4676-a068-a9d2fc7d7a9f' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>fname :</span></dt><dd>../../data/ZMAP/NStopo.dat</dd><dt><span>null_value :</span></dt><dd>1e+30</dd><dt><span>comment :</span></dt><dd>[&#x27; Landmark Zmap grid file name:   .\\DATA\\NStopo.dat&#x27;, &#x27; Created/converted by Oasis Montaj, Geosoft Inc.&#x27;, &#x27;File read by gio.read_zmap&#x27;]</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <section id="transform-the-surface">
 <h2>Transform the surface<a class="headerlink" href="#transform-the-surface" title="Permalink to this heading">#</a></h2>
@@ -702,7 +724,7 @@ Attributes:
 <p>We can take a peek at this file using IPython to see if it looks legit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head ./NStopo_m.dat
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>./NStopo_m.dat
 </pre></div>
 </div>
 </div>
@@ -738,7 +760,7 @@ Attributes:
 <p>It should look like the file we got before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head ./NStopo_m.dat
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>./NStopo_m.dat
 </pre></div>
 </div>
 </div>
@@ -844,11 +866,7 @@ Attributes:
     <script src="../_static/underscore.js"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     </body>
 </html>

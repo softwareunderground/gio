@@ -1,19 +1,17 @@
 Traceback (most recent call last):
-  File "/home/runner/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/runner/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/runner/.local/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/runner/.local/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
-    return just_run(coro(*args, **kwargs))
-  File "/home/runner/.local/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
-    return loop.run_until_complete(coro)
-  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+  File "/home/runner/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/home/runner/.local/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/.local/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/runner/.local/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+  File "/home/runner/.local/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -25,21 +23,23 @@ ds
 # Raises an error:
 ------------------
 
+
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn [8], line 3[0m
+Cell [0;32mIn[8], line 3[0m
 [1;32m      1[0m fname [38;5;241m=[39m [38;5;124m'[39m[38;5;124m../../data/OdT/3d_horizon/Segment_XY_No-header.dat[39m[38;5;124m'[39m
 [0;32m----> 3[0m ds [38;5;241m=[39m [43mgio[49m[38;5;241;43m.[39;49m[43mread_odt[49m[43m([49m[43mfname[49m[43m)[49m
 [1;32m      4[0m ds
+[1;32m      6[0m [38;5;66;03m# Raises an error:[39;00m
 
-File [0;32m~/.local/lib/python3.8/site-packages/gio/opendtect.py:222[0m, in [0;36mread_odt[0;34m(fname, names, usecols, na_values, origin, step, attrs)[0m
+File [0;32m~/.local/lib/python3.10/site-packages/gio/opendtect.py:222[0m, in [0;36mread_odt[0;34m(fname, names, usecols, na_values, origin, step, attrs)[0m
 [1;32m    170[0m [38;5;28;01mdef[39;00m [38;5;21mread_odt[39m(fname,
 [1;32m    171[0m              names[38;5;241m=[39m[38;5;28;01mNone[39;00m,
 [1;32m    172[0m              usecols[38;5;241m=[39m[38;5;28;01mNone[39;00m,
 [0;32m   (...)[0m
 [1;32m    176[0m              attrs[38;5;241m=[39m[38;5;28;01mNone[39;00m
 [1;32m    177[0m              ):
-[1;32m    178[0m     [38;5;124;03m"""[39;00m
+[1;32m    178[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
 [1;32m    179[0m [38;5;124;03m    Read an OdT horizon file. (Native format, not IESX.)[39;00m
 [1;32m    180[0m 
 [0;32m   (...)[0m
@@ -53,7 +53,7 @@ File [0;32m~/.local/lib/python3.8/site-packages/gio/opendtect.py:222[0m, in [
 [1;32m    228[0m     attrs [38;5;241m=[39m attrs [38;5;129;01mor[39;00m {}
 [1;32m    229[0m     attrs[38;5;241m.[39mupdate({[38;5;124m'[39m[38;5;124modt_filename[39m[38;5;124m'[39m: fname})
 
-File [0;32m~/.local/lib/python3.8/site-packages/gio/opendtect.py:96[0m, in [0;36mread_odt_as_df[0;34m(fname, names, usecols, na_values, **kwargs)[0m
+File [0;32m~/.local/lib/python3.10/site-packages/gio/opendtect.py:96[0m, in [0;36mread_odt_as_df[0;34m(fname, names, usecols, na_values, **kwargs)[0m
 [1;32m     94[0m [38;5;28;01melse[39;00m:
 [1;32m     95[0m     message [38;5;241m=[39m [38;5;124m'[39m[38;5;124mFirst two columns must be integers to be interpreted as inline and crossline.[39m[38;5;124m'[39m
 [0;32m---> 96[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(message)
@@ -61,5 +61,4 @@ File [0;32m~/.local/lib/python3.8/site-packages/gio/opendtect.py:96[0m, in [0
 [1;32m     98[0m names [38;5;241m=[39m ix [38;5;241m+[39m [[38;5;124mf[39m[38;5;124m'[39m[38;5;124mvar_[39m[38;5;132;01m{[39;00mn[38;5;132;01m}[39;00m[38;5;124m'[39m [38;5;28;01mfor[39;00m n [38;5;129;01min[39;00m cols [38;5;28;01mif[39;00m n [38;5;129;01min[39;00m (usecols [38;5;129;01mor[39;00m cols)]
 
 [0;31mTypeError[0m: First two columns must be integers to be interpreted as inline and crossline.
-TypeError: First two columns must be integers to be interpreted as inline and crossline.
 

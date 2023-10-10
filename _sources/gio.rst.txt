@@ -4,6 +4,14 @@ gio package
 Submodules
 ----------
 
+gio.closure module
+------------------
+
+.. automodule:: gio.closure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gio.esri module
 ---------------
 

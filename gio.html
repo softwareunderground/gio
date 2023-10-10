@@ -2,15 +2,14 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Development" href="development.html" /><link rel="prev" title="Unmap data from an image" href="userguide/Unmap_data_from_an_image.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Development" href="development.html" /><link rel="prev" title="Find closures" href="userguide/Find_closures.html" />
 
-    <link rel="shortcut icon" href="_static/favicon.ico"/><meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
         <title>gio package - gio documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
@@ -154,7 +153,7 @@
   
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -167,6 +166,7 @@
 <li class="toctree-l1"><a class="reference internal" href="userguide/Read_and_write_ZMAP_files.html">Read and write ZMAP files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Random_grids.html">Random grids</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/Unmap_data_from_an_image.html">Unmap data from an image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/Find_closures.html">Find closures</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
 <ul class="current">
@@ -207,7 +207,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -226,10 +227,61 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
 </section>
+<section id="module-gio.closure">
+<span id="gio-closure-module"></span><h2>gio.closure module<a class="headerlink" href="#module-gio.closure" title="Permalink to this heading">#</a></h2>
+<p>Closed-contour-related functions.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.closure.closure_height">
+<span class="sig-prename descclassname"><span class="pre">gio.closure.</span></span><span class="sig-name descname"><span class="pre">closure_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gio.closure.closure_height" title="Permalink to this definition">#</a></dt>
+<dd><p>Check that the max height is greater than the level.</p>
+<p>This is rather slow, so do it on the fewest possible candidates.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.closure.find_closures">
+<span class="sig-prename descclassname"><span class="pre">gio.closure.</span></span><span class="sig-name descname"><span class="pre">find_closures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_area</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Polygon</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gio.closure.find_closures" title="Permalink to this definition">#</a></dt>
+<dd><p>Find the largest closed contour in a grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>ndarray</em>) – The grid to search.</p></li>
+<li><p><strong>interval</strong> (<em>int</em>) – The interval between contours to consider, default 1 unit.</p></li>
+<li><p><strong>min_area</strong> (<em>int</em>) – The minimum area of a closure to consider, in grid squares.</p></li>
+<li><p><strong>min_closure</strong> (<em>int</em>) – The minimum closure of a closure to consider, in z units.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of polygons that meet the criteria.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of shapely.geometry.Polygon</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.closure.is_closed">
+<span class="sig-prename descclassname"><span class="pre">gio.closure.</span></span><span class="sig-name descname"><span class="pre">is_closed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gio.closure.is_closed" title="Permalink to this definition">#</a></dt>
+<dd><p>Determine if the last point is the same as the first.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gio.closure.is_high">
+<span class="sig-prename descclassname"><span class="pre">gio.closure.</span></span><span class="sig-name descname"><span class="pre">is_high</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Polygon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gio.closure.is_high" title="Permalink to this definition">#</a></dt>
+<dd><p>Decide if polygon p encloses a high region on grid z (returns True), or a
+low region (False).</p>
+<p>This is much faster than closure_height and can help reduce the number of
+times we run that.</p>
+<p>Sometimes the erosion buffer can result in more than 1 polygon, which tries
+to get <cite>exterior</cite> on a MultiPolygon, which fails. Could maybe do
+Polygon.boundary.xy instead, I think that works for MultiPolygon?</p>
+</dd></dl>
+
+</section>
 <section id="module-gio.esri">
 <span id="gio-esri-module"></span><h2>gio.esri module<a class="headerlink" href="#module-gio.esri" title="Permalink to this heading">#</a></h2>
 <p>Read E00 format DEM (digital elevation model) files.</p>
-<p>THIS IS A WORK IN PROGRESS.  IT DOES NOT WORK YET.</p>
+<p>THIS IS A WORK IN PROGRESS. IT DOES NOT WORK YET.</p>
 <dl class="field-list simple">
 <dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2022 Agile Geoscience</p>
@@ -328,21 +380,21 @@ locations. The names of your attributes are up to you.</p>
 <p>If there are 5 columns but you only give 4 names, then only
 the first 4 columns will be loaded.</p>
 </p></li>
-<li><p><strong>usecols</strong> (<em>list of ints</em>) – The indices of the columns that correspond
+<li><p><strong>usecols</strong> (<em>list</em><em> of </em><em>ints</em>) – The indices of the columns that correspond
 to the names you’re providing. If you’re loading all the columns,
 or the N names correspond to the first N columns, then you don’t
 need to provide this argument.</p></li>
-<li><p><strong>na_values</strong> (<em>list of str</em>) – The strings that correspond to missing data.
+<li><p><strong>na_values</strong> (<em>list</em><em> of </em><em>str</em>) – The strings that correspond to missing data.
 By default, this is [‘1e30’], the deault NULL value in OpendTect.
 Any values you provide will <em>replace</em> this default and will be
 used to replace missing data with NaNs.</p></li>
-<li><p><strong>origin</strong> (<em>tuple of ints</em>) – If you only have (x, y) locations, then
+<li><p><strong>origin</strong> (<em>tuple</em><em> of </em><em>ints</em>) – If you only have (x, y) locations, then
 gio will try to construct a grid from them. It probably doesn’t
 always work. It will assign inline and crossline numbers, which
 will just be NumPy-like indices by default. If you provide
 an origin, it will start numbering there; if you provide a step,
 it will use that to increment the indices.</p></li>
-<li><p><strong>step</strong> (<em>tuple of ints</em>) – The step size of the grid (see <cite>origin</cite>, above).</p></li>
+<li><p><strong>step</strong> (<em>tuple</em><em> of </em><em>ints</em>) – The step size of the grid (see <cite>origin</cite>, above).</p></li>
 <li><p><strong>attrs</strong> (<em>dict</em>) – The attributes to add to the Dataset; the filename
 will be added as ‘odt_filename’.</p></li>
 </ul>
@@ -896,14 +948,14 @@ DataArray’s comment attribute (after any found in the ZMAP file).</p></li>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="userguide/Unmap_data_from_an_image.html">
+          <a class="prev-page" href="userguide/Find_closures.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Unmap data from an image</div>
+                <div class="title">Find closures</div>
                 
               </div>
             </a>
@@ -948,16 +1000,86 @@ DataArray’s comment attribute (after any found in the ZMAP file).</p></li>
             <ul>
 <li><a class="reference internal" href="#">gio package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-gio.esri">gio.esri module</a></li>
-<li><a class="reference internal" href="#module-gio.iesx">gio.iesx module</a></li>
-<li><a class="reference internal" href="#module-gio.logo">gio.logo module</a></li>
-<li><a class="reference internal" href="#module-gio.opendtect">gio.opendtect module</a></li>
-<li><a class="reference internal" href="#module-gio.random">gio.random module</a></li>
-<li><a class="reference internal" href="#module-gio.surfer">gio.surfer module</a></li>
-<li><a class="reference internal" href="#module-gio.unmap">gio.unmap module</a></li>
-<li><a class="reference internal" href="#module-gio.xarray">gio.xarray module</a></li>
-<li><a class="reference internal" href="#module-gio.xy_to_grid">gio.xy_to_grid module</a></li>
-<li><a class="reference internal" href="#module-gio.zmap">gio.zmap module</a></li>
+<li><a class="reference internal" href="#module-gio.closure">gio.closure module</a><ul>
+<li><a class="reference internal" href="#gio.closure.closure_height"><code class="docutils literal notranslate"><span class="pre">closure_height()</span></code></a></li>
+<li><a class="reference internal" href="#gio.closure.find_closures"><code class="docutils literal notranslate"><span class="pre">find_closures()</span></code></a></li>
+<li><a class="reference internal" href="#gio.closure.is_closed"><code class="docutils literal notranslate"><span class="pre">is_closed()</span></code></a></li>
+<li><a class="reference internal" href="#gio.closure.is_high"><code class="docutils literal notranslate"><span class="pre">is_high()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.esri">gio.esri module</a><ul>
+<li><a class="reference internal" href="#gio.esri.read_e00_text"><code class="docutils literal notranslate"><span class="pre">read_e00_text()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.iesx">gio.iesx module</a><ul>
+<li><a class="reference internal" href="#gio.iesx.check_dialect"><code class="docutils literal notranslate"><span class="pre">check_dialect()</span></code></a></li>
+<li><a class="reference internal" href="#gio.iesx.read_iesx_from_petrel"><code class="docutils literal notranslate"><span class="pre">read_iesx_from_petrel()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.logo">gio.logo module</a><ul>
+<li><a class="reference internal" href="#gio.logo.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.opendtect">gio.opendtect module</a><ul>
+<li><a class="reference internal" href="#gio.opendtect.df_to_xarray"><code class="docutils literal notranslate"><span class="pre">df_to_xarray()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.get_meta"><code class="docutils literal notranslate"><span class="pre">get_meta()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.get_names_from_header"><code class="docutils literal notranslate"><span class="pre">get_names_from_header()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.read_odt"><code class="docutils literal notranslate"><span class="pre">read_odt()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.read_odt_as_df"><code class="docutils literal notranslate"><span class="pre">read_odt_as_df()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.regularize_columns"><code class="docutils literal notranslate"><span class="pre">regularize_columns()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.sense_types"><code class="docutils literal notranslate"><span class="pre">sense_types()</span></code></a></li>
+<li><a class="reference internal" href="#gio.opendtect.to_odt"><code class="docutils literal notranslate"><span class="pre">to_odt()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.random">gio.random module</a><ul>
+<li><a class="reference internal" href="#gio.random.fractal_noise"><code class="docutils literal notranslate"><span class="pre">fractal_noise()</span></code></a></li>
+<li><a class="reference internal" href="#gio.random.generate_random_surface"><code class="docutils literal notranslate"><span class="pre">generate_random_surface()</span></code></a></li>
+<li><a class="reference internal" href="#gio.random.interpolant"><code class="docutils literal notranslate"><span class="pre">interpolant()</span></code></a></li>
+<li><a class="reference internal" href="#gio.random.perlin_noise"><code class="docutils literal notranslate"><span class="pre">perlin_noise()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.surfer">gio.surfer module</a><ul>
+<li><a class="reference internal" href="#gio.surfer.read_grd"><code class="docutils literal notranslate"><span class="pre">read_grd()</span></code></a></li>
+<li><a class="reference internal" href="#gio.surfer.read_surfer"><code class="docutils literal notranslate"><span class="pre">read_surfer()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.unmap">gio.unmap module</a><ul>
+<li><a class="reference internal" href="#gio.unmap.unmap_to_dataarray"><code class="docutils literal notranslate"><span class="pre">unmap_to_dataarray()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.xarray">gio.xarray module</a><ul>
+<li><a class="reference internal" href="#gio.xarray.GridInfo"><code class="docutils literal notranslate"><span class="pre">GridInfo</span></code></a><ul>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.data"><code class="docutils literal notranslate"><span class="pre">GridInfo.data</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.dims"><code class="docutils literal notranslate"><span class="pre">GridInfo.dims</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.fname"><code class="docutils literal notranslate"><span class="pre">GridInfo.fname</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.source"><code class="docutils literal notranslate"><span class="pre">GridInfo.source</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.to_xarray"><code class="docutils literal notranslate"><span class="pre">GridInfo.to_xarray()</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.xmax"><code class="docutils literal notranslate"><span class="pre">GridInfo.xmax</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.xmin"><code class="docutils literal notranslate"><span class="pre">GridInfo.xmin</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.ymax"><code class="docutils literal notranslate"><span class="pre">GridInfo.ymax</span></code></a></li>
+<li><a class="reference internal" href="#gio.xarray.GridInfo.ymin"><code class="docutils literal notranslate"><span class="pre">GridInfo.ymin</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gio.xarray.SurfaceAccessor"><code class="docutils literal notranslate"><span class="pre">SurfaceAccessor</span></code></a><ul>
+<li><a class="reference internal" href="#gio.xarray.SurfaceAccessor.to_zmap"><code class="docutils literal notranslate"><span class="pre">SurfaceAccessor.to_zmap()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.xy_to_grid">gio.xy_to_grid module</a><ul>
+<li><a class="reference internal" href="#gio.xy_to_grid.get_intervals"><code class="docutils literal notranslate"><span class="pre">get_intervals()</span></code></a></li>
+<li><a class="reference internal" href="#gio.xy_to_grid.nearest_neighbours"><code class="docutils literal notranslate"><span class="pre">nearest_neighbours()</span></code></a></li>
+<li><a class="reference internal" href="#gio.xy_to_grid.parabolic"><code class="docutils literal notranslate"><span class="pre">parabolic()</span></code></a></li>
+<li><a class="reference internal" href="#gio.xy_to_grid.rectify"><code class="docutils literal notranslate"><span class="pre">rectify()</span></code></a></li>
+<li><a class="reference internal" href="#gio.xy_to_grid.xy_to_grid"><code class="docutils literal notranslate"><span class="pre">xy_to_grid()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-gio.zmap">gio.zmap module</a><ul>
+<li><a class="reference internal" href="#gio.zmap.array_to_zmap"><code class="docutils literal notranslate"><span class="pre">array_to_zmap()</span></code></a></li>
+<li><a class="reference internal" href="#gio.zmap.dataarray_to_zmap"><code class="docutils literal notranslate"><span class="pre">dataarray_to_zmap()</span></code></a></li>
+<li><a class="reference internal" href="#gio.zmap.read_zmap"><code class="docutils literal notranslate"><span class="pre">read_zmap()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-gio">Module contents</a></li>
 </ul>
 </li>
@@ -975,11 +1097,7 @@ DataArray’s comment attribute (after any found in the ZMAP file).</p></li>
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     </body>
 </html>
