@@ -120,13 +120,18 @@ def find_closures(arr: ArrayLike,
 
         # Capture all contours that are high enough.
         for contour in contours:
+
             y_, x = contour.T  # y_ is row *from top* of array
             contour = np.stack([x, y_, np.ones_like(x)*level]).T
             p = Polygon(contour)
+
+            # Do various tests.
             if p.area < min_area: continue
             if not is_high(arr_, p): continue
             if any([p.within(c) for c in all_contours]): continue
             if (closure_height(arr_, contour) - level) < min_height: continue
+
+            # What's left is a good closure.
             all_contours.append(p)
 
     return all_contours
